@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			3、prompt()函数，弹窗，获取输入。
+				（1）返回输入内容，类型为字符串。
+				（2）+prompt()函数返回Number数据类型
+			*/
+		   var score = prompt("请输入分数");
+		   console.log(typeof score);
+		   console.log(score);
+		   
+		   /*
+		   3、switch
+		   	（1）语法结构
+				switch(num){
+					case "1":
+						console.log("一");
+						break;
+					case "2":
+						console.log("二");
+						break;
+					default :
+						console.log("无匹配");
+						break;
+				}
+		   	（2）switch语句判断的是全等 ===
+		   	（3）若每个case后面不跟break，则从第一个case匹配后，每个case后面的内容都会执行
+		   	（4）
+		   	（5）
+		   */
+		  var num = prompt("请输入一个数字：");
+		  switch(num){                        //特别提醒switch语句判断的是 ===
+			  case "1":
+				  console.log("一");
+				  break;
+			  case "2":
+				  console.log("二");
+				  break;
+			  default :
+				  console.log("无匹配");
+				  break;
+		  }
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

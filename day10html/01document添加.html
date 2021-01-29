@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			li{
+				border-style: solid;
+				background-color: antiquewhite;
+				float: left;
+				margin: 0.3125rem;
+				padding: 0.3125rem;
+				list-style-type: none;
+			}
+			button{
+				width: 200px;
+				float: left;
+			}
+			
+		</style>
+		<script type="text/javascript">
+			/*
+			#### 1、添加节点
+				(1)添加节点 语法：父节点.appendChild(节点);
+					var li = document.createElement("li");      //创建元素节点
+					// var text = document.createTextNode("广州"); //创建文本节点
+					// li.appendChild(text);   //将文本内容加到元素节点内
+					li.innerHTML = "广州";  //innerHTML更方便
+					city.appendChild(li);  //添加加点到父节点内，默认在最后面添加
+					
+					// 方法二 
+					// city.innerHTML += "<li>广州</li>"; //会改变父节点内的所有内容
+				(2)在某节点前面添加节点 city.insertBefore(li, bj);
+					语法：父节点.insertBefore(新节点, 节点);
+					var li = document.createElement("li");      //创建元素节点
+					var text = document.createTextNode("广州"); //创建文本节点
+					li.appendChild(text);   //将文本内容加到元素节点内
+					city.insertBefore(li, bj);
+				(3)替换节点 语法：父节点.replaceChild(新节点, 旧节点);
+					var li = document.createElement("li");
+					var text = document.createTextNode("广州");
+					li.appendChild(text);
+					city.replaceChild(li, bj);
+				(4)删除节点 语法：父节点.removeChild(节点);
+					city.removeChild(bj);  //删除北京节点
+					//bj.parentNode.removeChild(bj); //先获取父节点再删自己
+			*/
+			
+			window.onload = function(){
+				var city = document.getElementById("city"); //获取父节点
+				var bj = document.getElementById("bj"); //获取北京节点
+				var addBtn = document.getElementById("addBtn");
+				var addBeforeBtn = document.getElementById("addBeforeBtn");
+				var replaceBtn = document.getElementById("replaceBtn");
+				var delBtn = document.getElementById("delBtn");
+				//添加广州
+				addBtn.onclick = function(){
+					var li = document.createElement("li");      //创建元素节点
+					// var text = document.createTextNode("广州"); //创建文本节点
+					// li.appendChild(text);   //将文本内容加到元素节点内
+					li.innerHTML = "广州";  //innerHTML更方便
+					city.appendChild(li);  //添加加点到父节点内，默认在最后面添加
+					
+					// 方法二 
+					// city.innerHTML += "<li>广州</li>"; //会改变父节点内的所有内容
+				};
+				//在北京前添加广州
+				addBeforeBtn.onclick = function(){
+					var li = document.createElement("li");      //创建元素节点
+					var text = document.createTextNode("广州"); //创建文本节点
+					li.appendChild(text);   //将文本内容加到元素节点内
+					city.insertBefore(li, bj);
+				};
+				//替换北京为广州
+				replaceBtn.onclick = function(){
+					var li = document.createElement("li");
+					var text = document.createTextNode("广州");
+					li.appendChild(text);
+					city.replaceChild(li, bj);
+				};
+				//删除北京
+				delBtn.onclick = function(){
+					// city.removeChild(bj);  //删除北京节点
+					bj.parentNode.removeChild(bj);
+				};
+				
+			};  //onload
+		</script>
+		
+	</head>
+	<body>
+		<div style="width: 40%; float: left;" id="">
+			<ul id="city">
+				<li id="bj">北京</li>
+				<li>杭州</li>
+				<li>上海</li>
+				<li>深圳</li>
+				
+			</ul>
+		</div>
+		<div style="float: right; width: 200px;"  id="">
+			<button id="addBtn">添加广州</button>
+			<button id="addBeforeBtn">在北京前面添加广州</button>
+			<button id="replaceBtn">替换北京为广州</button>
+			<button id="delBtn">删除北京</button>
+		</div>
+	</body>
+</html>

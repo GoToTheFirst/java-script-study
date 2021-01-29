@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 1、
+				(1)字符串拆分为数组
+					var res = str.split(/[A-z]/);  //根据字母拆分字符串为数组
+				(2)str.search(/2[a-z]3/)  查找字符串，返回第一次出现位置
+					search只会查找一行即使设置全局匹配也没用
+				(3)str.match() 提取符合正则表达式的字符串 返回一个数组封装查找的结果
+					console.log(str.match(/[a-z]/ig));  //提取字符串中的所有字母 i忽略大小写 g全局匹配
+				(4)str.replace() 替换
+					console.log(str.replace("a", "@@@")); //默认只替换第一个查找到的字符
+					console.log(str.replace(/[A-z]/g, "@@@")); //全局匹配替换
+				(5)
+			*/
+			var str = "1a2s3w6r4s92a3g5a7";
+			//根据字母拆分字符串为数组
+			var res = str.split(/[A-z]/);
+			console.log(res);
+			
+			console.log(str.search(/2[a-z]3/));  //查找字符串，返回第一次出现位置
+			console.log(str.match(/[a-z]/ig));  //提取字符串中的所有字母 i忽略大小写 g全局匹配
+			
+			console.log(str.replace("a", "@@@")); //默认只替换第一个查找到的字符
+			console.log(str.replace(/[A-z]/g, "@@@")); //全局匹配替换
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

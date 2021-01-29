@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 1、
+				(1)parentNode函数返回父亲节点
+					//获取带标签的内容
+					console.log(pn.innerHTML);
+					//获取文本，不带标签
+					console.log(pn.innerText);
+					
+				(2)previousElementSibling函数获取前一个兄弟节点
+					var ps = hz.previousSibling;          //获取前一个节点，也有可能是空白文本
+					var pes = hz.previousElementSibling;  //获取前一个兄弟元素，不包括空白文本
+					nextElementSibling 函数获取下一个兄弟节点
+					var ns = hz.nextElementSibling;      //获取下一个兄弟元素
+				(3)输入框的value就是输入内容
+					var sub = document.getElementById("sub");
+					var inputId = document.getElementById("inputId");
+					sub.onclick = function(){
+						console.log(inputId.value);
+					};
+				(4)firstElementChild函数是获取孩子元素
+					ulFirstEleulId = ulId.firstElementChild;
+			*/
+			window.onload = function(){
+				var bj = document.getElementById("bj");
+				var pn = bj.parentNode;
+				//获取带标签的内容
+				console.log(pn.innerHTML);
+				//获取文本，不带标签
+				console.log(pn.innerText);
+				
+				var hz = document.getElementById("hz");
+				console.log(hz);
+				var ps = hz.previousSibling;          //获取前一个节点，也有可能是空白文本
+				var pes = hz.previousElementSibling;  //获取前一个兄弟元素，不包括空白文本
+				console.log(pes);
+				console.log(pes.innerHTML);
+				
+				var ns = hz.nextElementSibling;      //获取下一个兄弟元素
+				console.log(ns);
+				
+				var sub = document.getElementById("sub");
+				var inputId = document.getElementById("inputId");
+				sub.onclick = function(){
+					console.log(inputId.value);
+				};
+				
+				var ulId = document.getElementById("ulId");
+				ulFirstEleulId = ulId.firstElementChild;
+				console.log(ulFirstEleulId.innerText);
+			};
+			
+		</script>
+	</head>
+	<body>
+		<ul id="ulId">
+			<li id="bj">北京</li>
+			<li id="sh">上海</li>
+			<li id="hz">杭州</li>
+			<li id="hn">河南</li>
+		</ul>
+		<div>
+			<label>输入框：</label>
+			<input id="inputId" type="text" placeholder="请输入内容">
+			<button id="sub" type="button">提交</button>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			3、枚举对象属性 语法：for( 变量 in 对象) 
+				(1)var obj = {
+					name: "张三",
+					age: 20,
+					address: "文化路"
+				}
+				for(var n in obj){
+					//逐个输出对象属性名和属性值
+					console.log(n + " : " + obj[n]);
+				}
+			*/
+			var obj = {
+				name: "张三",
+				age: 20,
+				address: "文化路"
+			}
+			for(var n in obj){
+				console.log(n + " : " + obj[n]);
+			}
+			
+			console.log("console对象中的属性有：");
+			for( n in console){
+				console.log(n);
+			}
+			console.log("document对象中的属性有：");
+			for( n in document){
+				console.log(n);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

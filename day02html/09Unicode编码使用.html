@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			8、Unicode编码使用输出
+				（1）js格式：\u2620  \u后面跟十六进制编码
+				（2）HTML格式为&#9760 &#后面跟的是十进制 
+			*/
+		   /*
+		   9、相等运算
+		   	（1）相等运算 == != 自动类型转换
+				一般情况下转换成Number然后进行运算，eg：true == "1" 返回true 
+				也有特殊情况 eg：null == 0 返回false
+				特殊情况：undefined衍生自null， undefined == null 返回true
+				特殊情况：NaN不与任何值相等，也包括它本身。NaN == NaN返回false，判断是否为NaN使用isNaN()函数。
+		   	（2）全等 === 不自动类型转换  !==与===类似
+				eg：123 ==="123"返回false
+		   */
+		   console.log("\u2620"); //骷髅头
+		   
+		   var res = null == 0;
+		   console.log("null == 0 返回：" + res);
+		   var res = null == 0;
+		   console.log("undefined == null 返回：" + res);
+		   res = NaN == NaN;
+		   console.log("NaN == NaN 返回：" + res);
+		   res = isNaN(NaN);
+		   console.log("isNaN(NaN) 返回：" + res);
+		   
+		   console.log("123" === 123);  //返回false
+		   console.log(null === undefined);  //返回false
+		   console.log("abc" === "abc");  //返回true
+		   
+		</script>
+	</head>
+	<body>
+		<h1 style="font-size: 31.25rem">&#9760</h1>
+	</body>
+</html>

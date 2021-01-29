@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			4、prototype原型对象
+				(1)prototype对象在函数创建时由解析器自动添加
+				(2)作为普通函数调用时prototype没有任何作用，
+					当作为构造函数调用时，prototype作为隐含属性，可以通过__proto__来访问该属性
+				(3)原型对象就像一个公共区域，所有同一个类的实例都可以访问到这个对象
+					先在自身对象中寻找，有则直接使用，没有的话向原型对象中寻找
+					function Person(name, age, gender){
+						this.name = name;         //this会将值赋给新创建的对象
+						this.age = age;
+						this.gender = gender;
+					}
+					Person.prototype.sayName = function(){
+						console.log(this.name);
+					}
+					
+					var per1 = new Person("zhangsan", 21, "men");
+					per1.sayName();  //输出 zhangsan
+					
+				(4)创建构造函数时，将公有的属性和方法放在prototype中可以被所有实例访问，
+					不需要为每一个实例创建对象，也不会污染到全局作用域
+				(5)检查类自身是否拥有某属性 hasWonProperty()  自身没有prototype中有也会返回true
+					使用 "属性" in obj 来检查时 prototype中含有也会返回true
+					console.log(per1.hasOwnProperty("sayName"));  //返回false
+					console.log(per1.hasOwnProperty("age"));      //返回true
+					console.log("sayName" in per1);               //返回true
+				(6)hasOwnProperty在对象的原型的原型中
+					console.log(per1.__proto__.__proto__.hasOwnProperty("hasOwnProperty"));//返回true
+					原型的原型的原型为null
+					console.log(per1.__proto__.__proto__.hasOwnProperty("hasOwnProperty"))
+				(7)toString()方法返回的是Object类型，toString()方法在对象的原型的原型里
+					console.log(per1.__proto__.__proto__.hasOwnProperty("toString")); //返回true
+					可以在原型中修改toString()方法
+					Person.prototype.toString = function(){
+						console.log("Person[name="+this.name+",age="+this.age+",gender="+this.gender+"]");
+					};  //这是一个赋值语句需要加 ;
+					per1.toString();
+			
+			*/
+
+			function Person(name, age, gender){
+				this.name = name;         //this会将值赋给新创建的对象
+				this.age = age;
+				this.gender = gender;
+			}
+			Person.prototype.sayName = function(){
+				console.log(this.name);
+			}
+			
+			var per1 = new Person("zhangsan", 21, "men");
+			per1.sayName();  //输出 zhangsan
+			
+			//检查类自身是否拥有某属性 hasWonProperty() 
+			console.log(per1.hasOwnProperty("sayName"));  //返回false
+			console.log(per1.hasOwnProperty("age"));      //返回true
+			console.log("sayName" in per1);               //返回true
+			
+			// hasOwnProperty在对象的原型的原型中
+			console.log(per1.__proto__.__proto__.hasOwnProperty("hasOwnProperty"));//返回true
+			console.log(per1.__proto__.__proto__.__proto__)  //返回null
+			
+			// toString()方法返回的是Object类型，toString()方法在对象的原型的原型里
+			console.log(per1.__proto__.__proto__.hasOwnProperty("toString")); //返回true
+			// 可以在原型中修改toString()方法
+			Person.prototype.toString = function(){
+				console.log("Person[name="+this.name+",age="+this.age+",gender="+this.gender+"]");
+			};  //这是一个赋值语句需要加 ;
+			per1.toString();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			/*
+			#### 5、eval()函数
+				(1)传入js语句 以字符串形式，利用eval()函数可执行js语句
+					eval("alert('hello');");
+				(2)ie7-不支持JSON类 可用eval()函数执行
+					var v = eval("("+obj+")");  // 加括号避免将JSON串中的{}当做代码块边界，可用变量接收执行结果
+					兼容ie7-也可以引入json库
+			*/
+			// 创建JSON对象
+			var obj = '{"name": "张三", "age":18, "gender": "man"}';
+			var arr = '[1,2,3,"hello",true]';
+			
+			// eval("alert('hello');");
+			var v = eval("("+obj+")");  // 加括号避免将JSON串中的{}当做代码块边界，可用变量接收执行结果
+			console.log(v);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 1、键盘事件
+				(1)键盘事件一般绑定给获取焦点的元素或者document
+					· onkeydown 按着部松手会连续触发
+					· onkeyup   松下触发
+					· altkey shiftkey  alt是否被按下 被按下返回true event.shiftKey
+						if(event.shiftKey && event.keyCode == 65) console.log("shift和a同时按下");
+					· keycode 通过keycode打印按键编码，同时判断被按下的按键 unicode编码
+				(2)输入内容时 input的默认行为返回false后将不会执行输入
+					inputId.onkeydown = function(){
+						console.log("按下");
+						return false;  // 输入内容时 input的默认行为返回false后将不会执行输入
+					}
+					应用：不能输入数字
+					inputId.onkeydown = function(){
+						console.log("按下");
+						if(event.keyCode>=48 && event.keyCode<=57) return false;
+					}
+				(3)
+				(4)
+				(5)
+			*/
+			window.onload = function(){
+				document.onkeydown = function(){
+					// console.log("按键按下");
+					console.log(event.keyCode);
+					if(event.keyCode == 65) console.log("a按下");
+					if(event.shiftKey && event.keyCode == 65) console.log("shift和a同时按下");
+				}
+				document.onkeyup = function(){
+					// console.log("按键松开");
+				}
+				
+				var inputId = document.getElementById("inputId");
+				// 不能输入数字
+				inputId.onkeydown = function(){
+					console.log("按下");
+					if(event.keyCode>=48 && event.keyCode<=57) return false;
+				}
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="box1">
+			<input type="text" name="" id="inputId" value="" />
+		</div>
+	</body>
+</html>

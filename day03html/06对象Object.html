@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>object对象</title>
+		<script type="text/javascript">
+			/*
+			6.1、Object 对象数据类型
+				(1)内建对象：ES标准中实现的对象，任何使用ES标准的都可以使用
+							eg：Math String Boolean Function Object...
+				(2)宿主对象：由js的运行环境提供的对象，目前来讲主要指浏览器提供的对象
+							eg：BOM DOM (console document)
+				(3)自定义对象：由开发人员创立的对象
+			*/
+		    /*
+		    6.2、自定义对象：由开发人员创立的对象
+				(1)构造函数 new Object(); eg: var obj = new Object();
+				(2)添加内容 obj.name = "张三"; obj.gender = "男"；
+				(3)读取内容 obj.name  读取对象中没有的属性返回undefined
+							 obj["name"] 中括号内可以放变量 eg: var n = "age"; console.log(obj[n]);
+				(4)修改内容 obj.name = "新值"; 
+				(5)删除内容 delete obj.name;
+				(6)属性名不强制要求标志符的规范 obj.var = "test"; 不会报错
+						特殊属性名用 obj["123"] = ""; 语法来存取。(obj.123 = ""  报错！)
+				(7)属性值也可为对象 obj.test = obj1; 存取：obj.test.name = ""
+				(8)"属性名" in obj 检查obj中是否含有某属性 有则返回true 否则返回 false
+				
+		   */
+		  
+		   //调用new Object() 构造函数 创建对象
+		   var obj = new Object();
+		   //添加属性
+		   obj.name = "张三";
+		   obj.gender = "男";
+		   obj.age = 20;
+		   console.log("添加属性obj对象为：" + obj);
+		   
+		   //读取内容
+		   console.log(obj.name);
+		   console.log(obj.hobby);   //读取对象中没有的属性返回undefined
+		   
+		   //修改内容
+		   obj.name = "李四";
+		   console.log("修改名字后，name = " + obj.name);
+		   
+		   //删除属性
+		   delete obj.name;
+		   console.log("删除后name属性后 name = " + obj.name);
+		   //特殊情况
+		   console.log(obj["age"]);
+		   obj["123"] = 456;
+		   console.log(obj["123"]);
+		   
+		   // []内部可以放变量
+		   var n = "age";
+		   console.log(obj[n]);
+		   
+		   //检查是否含有某属性  "属性名" in obj
+		   console.log("name" in obj);
+		   console.log("age" in obj);
+		   
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

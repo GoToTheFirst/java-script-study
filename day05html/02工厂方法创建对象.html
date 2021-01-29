@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			2、工厂方法创建对象
+				(1)工厂方法创建对象不能区分对象（不能区分是狗对象还是人对象）
+				   var penson1 = creatPerson("zhangsan", 14, "men");
+				   var penson2 = creatPerson("lisi", 14, "men");
+				   var penson3 = creatPerson("wangwu", 14, "men");
+				   var penson4 = creatPerson("zhaoliu", 14, "men");
+				   penson1.sayName();
+				   penson2.sayName();
+				   penson3.sayName();
+				   penson4.sayName();	
+			*/
+		   function creatPerson(name, age, gender){
+			   var obj = {
+				   name: name,
+				   age: age,
+				   gender: gender,
+				   sayName: function(){
+					   console.log(this.name);
+				   }
+			   };
+			   return obj;
+		   }
+		   
+		   var penson1 = creatPerson("zhangsan", 14, "men");
+		   var penson2 = creatPerson("lisi", 14, "men");
+		   var penson3 = creatPerson("wangwu", 14, "men");
+		   var penson4 = creatPerson("zhaoliu", 14, "men");
+		   penson1.sayName();
+		   penson2.sayName();
+		   penson3.sayName();
+		   penson4.sayName();
+		   
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

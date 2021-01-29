@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1 {
+				width: 50px;
+				height: 50px;
+				border: 1px solid #333333;
+				background-color: red;
+				position: relative;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			#### 1、滚轮事件
+				(1)event.wheelDelta 向上滚为正数，向下滚为负数
+					· Firefox不支持 wheelDelta属性 可用 detail 向上滚返回-3 向下滚返回3
+					· box1.onmousewheel Firefox不支持，支持DOMMouseScroll, 而且必须用绑定事件
+					// Firefox不支持 wheelDelta属性 可用 detail 向上滚返回-3 向下滚返回3
+					if(event.wheelDelta > 0 || event.detail > 0){
+						box1.style.height = box1.clientHeight + 10 + "px";
+					}else{
+						box1.style.height = box1.clientHeight - 10 + "px";
+					}
+			*/
+				
+			
+			window.onload = function() {
+				// 绑定事件兼容写法
+				function bind(obj, eventStr, fun) {
+					if (obj.addEventListener) {  // ie8- 不支持
+						obj,
+						addEventListener(eventStr, function() {
+							fun.call(obj);
+							// 此时this指的是obj
+						}, false);
+					}
+					else {          // ie8- 支持
+						obj.attachEvent("on" + eventStr, function() {
+							fun.call(obj);
+							// 此时this指的是obj
+						});
+					}
+				}
+				
+				// 获取当前css属性
+				function myStyle(obj, name){  //第二个参数为字符串
+					if(obj.currentStyle){
+						return obj.currentStyle[name];
+					}else{
+						return getComputedStyle(obj, null)[name];
+					}
+				}
+				// 鼠标滚动事件
+				function myFunction(){
+					console.log("鼠标滚动事件");
+					console.log(event.detail);
+					console.log(myStyle(box1, "height"));
+					console.log(myStyle(box1, "detail"));
+					// Firefox不支持 wheelDelta属性 可用 detail 向上滚返回-3 向下滚返回3
+					if(event.wheelDelta > 0 || event.detail > 0){
+						box1.style.height = box1.clientHeight + 10 + "px";
+					}else{
+						box1.style.height = box1.clientHeight - 10 + "px";
+					}
+				}
+				var box1 = document.getElementById("box1");
+				
+				// 滚轮事件随着滚轮div边长
+				// box1.onmousewheel Firefox不支持，支持DOMMouseScroll, 而且必须用绑定事件
+				bind(box1, "DOMMouseScroll", myFunction);
+				box1.onmousewheel = myFunction;
+				
+				// 取消addEventListener
+				event.preventDefault && event.preventDefault();
+				
+				return false;
+			}
+		</script>
+	</head>
+	<body style="height: 200px;">
+		<div id="box1"></div>
+	</body>
+</html>

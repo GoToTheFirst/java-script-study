@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 1、String 的记种方法
+				(1)str.length 返回字符串长度
+				(2)str.charAt(x) 返回字符串第x个字符; str.charCodeAt(1) 返回字符串第x个字符的Unicode编码
+				(3)String.fromCharCode(101) 传入Unicode编码返回字符（十进制） 0x 开头十六进制
+				(4)str.concat(str)  拼接字符串，相当于 str + str
+				(5)str.indexOf("e")  返回第一次出现的索引, 没找到返回-1
+					可传入第二个参数指定查找位置 str.indexOf("e", 2) 从二号位置开始查找
+					str.lastIndexOf("e") 从后往前找，用法于str.indexOf()一样
+				(6)截取字符串
+					str.slice(1, 7) 截取返回，与数组slice用法类似。传入负数表示倒数第几个
+					str.substring(1,0) 用法与slice()类似 不同之处是不能接收负值，赋值被转化为0 若a<b则交换a b位置
+					str.substr(1,2) 第一个为开始位置，第二个为截取个数
+				(7)str.split(",");   //根据 , 拆分字符串为数组,传""将每个字符都拆分为一个数组元素
+				(8)str.toLowerCase();  //转换为小写
+					str.toUpperCase();  //转换为大写
+			*/
+			var str = "hello Tom!";
+			console.log(str.length);  //返回字符串长度
+			console.log(str.charAt(1)); //返回字符串第x个字符; str.charCodeAt(1) 
+			console.log(str.charCodeAt(1));  //返回字符串第x个字符的Unicode编码
+			
+			console.log(String.fromCharCode(101));  //传入Unicode编码返回字符（十进制）
+			console.log(str.concat(str)); //拼接字符串，相当于 str + st
+			
+			console.log(str.indexOf("e"));
+			console.log(str.indexOf("e", 2));
+			console.log(str.lastIndexOf("e"));
+			console.log(str.slice(1, 7));
+			
+			console.log(str.substring(1,0));
+			console.log(str.substr(1,2));
+			
+			str = "123,456,78,9";
+			var res = str.split(","); //根据 , 拆分字符串为数组
+			console.log(res);
+			
+			str = "abcdefg";
+			console.log(str.toUpperCase());  //转换为大写
+			console.log(str.toLowerCase());  //转换为小写
+			var res = str.split("");
+			console.log(res);
+			
+		</script> 
+	</head>
+	<body>
+	</body>
+</html>

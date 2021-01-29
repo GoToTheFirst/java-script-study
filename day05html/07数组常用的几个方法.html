@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 7、数组的几种常用方法
+				(1)push() 向数组末尾添加一个或多个元素并返回新的数组长度
+					arr.push(1,2,3); //返回最新数组长度。方法参数不能为空，为空则不添加
+					arr.push();    //参数为空时不执行添加
+				(2)pop() 删除最后一个元素并返回删除元素的值
+					var res = arr.pop();  //删除最后一个元素并返回删除元素的值,不需要传参
+				(3)unshift() （向右移位） 向数组头部添加一个或多个元素并返回新的数组长度
+					len = arr.unshift("头加", "一个或多个");
+				(4)shift() （向右移位） 删除第一个元素 并返回第一个元素值
+					res = arr.shift();
+				(5)toString()  逐个返回元素值用,隔开
+					arr.toString(); 
+				(6)join()方法 将数组连接成一个字符串，也可传入参数用以间隔，默认用,隔开传
+					其中参数必须为字符串否则报错
+					console.log(arr.join());      //输出 1,2,3
+					console.log(arr.join(""));    //输出 123
+					console.log(arr.join("*"));   //输出 1*2*3
+					console.log(arr.toString());  //转字符串用 , 隔开
+					console.log(*);   //报错 Unexpected token '*'
+				(7)delete arr[1];   删除指定位置元素 定义为undefined 与arr[1] = undefined;稍有不同
+					console.log(delete arr[1]);   //输出 ["一个或多个", empty, 2]
+					arr[1] = undefined;
+					console.log(arr);       //输出 ["一个或多个", undefined, 2]
+				(8)arr.splice(start, deleteCount, item1, item); 删除元素并向数组中添加新元素 返回删除元素
+					第一个参数必填(不填没意义不做删除操作)：表示开始位置，包括start本身
+					第二个参数可不填：有参数表示删除个数 为0不删除，无参数表示从start(包括start本身)以后的都删除
+					第三四···参数可选填：有参数则从start位置添加，若超过删除元素个数则后面元素自动后移
+					arr = [1,2,3,4,5];
+					var s = arr.splice(1, 2, 22, 33);
+					console.log(arr);  //输出 [1, 22, 33, 2, 3, 4, 5]
+					console.log(s);    //输出 [2, 3]
+				(9)arr.concat(a) 连接参数a a可以是任意类型，若是数组则直接逐个连接
+					返回连接后的数组，原数组不改变
+					resConcat = arr.concat(arr);  //可以连接任何元素
+					var resConcat = arr.concat("我是连接元素");
+					resConcat = arr.concat(arr, arr);  //可传入多个参数连接到一起
+				(10)arr.slice(start,end); 按索引截取元素并返回且不改变原数组，包括start 不包括end
+					end可以为负值表示倒数第几个（也取不到）
+					end值可以省略表示从start（包括start）开始到最后
+					resSlice = arr.slice(1);  //到最后
+					resSlice = arr.slice(1, -1); //到倒数第一个 且不包括倒数第一个
+				(11) arr.sort(); 以Unicode编码顺序排序，改变原数组，返回的改变后的数组
+					注意Unicode编码中 16<2
+					可自己定义回调函数，达到纯数字排序的目的
+					arr.sort(function(a,b){
+						// return a-b;  //升序
+						return a-b;  //降序
+						//返回值大于0 则交换a b位置
+						//返回值小于等于0 则不交换a b位置
+					});
+			*/
+			var arr = [];
+			var len = arr.push(1,2,3); //返回最新数组长度。方法参数不能为空，为空则不添加
+			arr.push();    //参数为空时不执行添加
+			console.log(len);
+			console.log(arr);
+			
+			var res = arr.pop();  //删除最后一个元素并返回删除元素的值,不需要传参
+			console.log(arr);
+			console.log(res);
+			
+			len = arr.unshift("头加", "一个或多个");  //向数组头部添加一个或多个元素并返回新的数组长度
+			console.log(arr);
+			
+			res = arr.shift();  //删除第一个元素 并返回第一个元素值
+			console.log(arr);
+			console.log(res);
+			
+			console.log(arr.toString());  //逐个返回元素值用,隔开
+			
+			console.log("join()方法测试：")
+			console.log(arr.join());      //将数组连接成一个字符串，也可传入参数用以间隔，默认用,隔开
+			console.log(arr.join(""));
+			console.log(arr.join("*"));
+			// console.log(*);   //报错 Unexpected token '*'
+			
+			// delete arr[1];   //删除指定位置元素 定义为undefined 与arr[1] = undefined;稍有不同
+			arr[1] = undefined;
+			console.log(arr);   //输出 ["一个或多个", undefined, 2]
+			console.log(arr[1]);
+			
+			console.log("\n");
+			console.log("测试spice()方法：")
+			arr = [1,2,3,4,5];
+			var s = arr.splice(1, 2, 22, 33);  //返回删除元素，多个元素自动转为数组
+			console.log(arr);  //输出 [1, 22, 33, 2, 3, 4, 5]
+			console.log(s);    //输出 [2, 3]
+			
+			console.log(arr.valueOf());
+			var d = new Date();
+			console.log(d.valueOf());  //返回时间戳 1609856215680
+			console.log(d);  //输出 Tue Jan 05 2021 22:05:28 GMT+0800 (中国标准时间)
+			console.log(d.toLocaleString());  //转换为本地时间格式 2021/1/5 下午10:05:28 
+			
+			console.log("\n");
+			arr = [11,22,33,44,55];
+			var resConcat = arr.concat("我是连接元素");
+			console.log("arr = " + arr);
+			console.log("resConcat = " + resConcat);
+			
+			resConcat = arr.concat(arr);  //可以连接任何元素
+			console.log("arr = " + arr);
+			console.log("resConcat = " + resConcat);
+			
+			
+			console.log("\n");
+			arr = [11,22,33,44,55];
+			var resSlice = arr.slice(1,2);
+			console.log(resSlice);
+			resSlice = arr.slice(1);  //到最后
+			console.log(resSlice);  
+			resSlice = arr.slice(1, -1); //到倒数第一个 且不包括倒数第一个
+			console.log(resSlice);
+			
+			console.log("\n");
+			var resSort = arr.sort();  //以Unicode编码顺序排序，改变原数组，返回的改变后的数组
+			console.log(arr);
+			console.log(resSort);
+			
+			console.log("\n");
+			arr = [11,2,5,78,6,16,3,4,56,8];
+			arr.sort(function(a,b){
+				// return a-b;  //升序
+				return a-b;  //降序
+				//返回值大于0 则交换a b位置
+				//返回值小于等于0 则不交换a b位置
+			});
+			console.log(arr);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

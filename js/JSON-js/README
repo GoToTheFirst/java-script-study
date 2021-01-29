@@ -1,0 +1,26 @@
+ie7-中不支持JSON，解决办法如下
+方法一：可通过引入外部js来解决
+
+json2.js：如果存在，此文件会在全局对象中创建JSON属性
+还不是一个，将其值设置为包含stringify的对象
+方法和解析方法。解析方法使用eval方法执行
+进行解析，并用几个正则表达式保护它以防
+意外的代码执行危险。在当前的浏览器中，此文件不执行任何操作，
+更喜欢内置的JSON对象。除非没有理由，否则没有理由使用此文件
+命运迫使您支持IE8，这是任何人都不应该的
+必须再次做。
+
+cycle.js：此文件包含两个函数JSON.decycle和JSON.retrocycle，
+这样就可以在JSON中编码循环结构和dag，并
+然后恢复它们。ES5不提供此功能。JSONPath
+用于表示链接。[ http://GOESSNER.net/articles/JsonPath/ ]
+
+方法二：
+	try{
+		json = JSON.parse(attendeeJson);//ie 89 ff（火狐） ch（Google）
+		alert("ok");
+	}catch(e){
+		// 加括号避免将JSON串中的{}当做代码块边界，可用变量接收执行结果
+		json= eval('('+attendeeJson+')'); //ie7-
+		alert(e);
+	}

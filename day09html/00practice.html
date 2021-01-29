@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			window.onload = function(){
+				var checkAll = document.getElementById("checkAll");
+				var basketball = document.getElementById("basketball");
+				var volleyball = document.getElementById("volleyball");
+				var Pingpang = document.getElementById("Pingpang");
+				var football = document.getElementById("football");
+				var badminton = document.getElementById("badminton");
+				
+				var cheboxs = document.getElementsByName("motion");
+				
+				//保持 全选/全不选 同步
+				for(var i = 0; i<cheboxs.length; i++){
+					cheboxs[i].onclick = function(){
+						var flag = true;
+						for(var j = 0; j<cheboxs.length; j++){
+							if(!cheboxs[j].checked) {
+								flag = false;
+								break;
+							}
+						};
+						checkAll.checked = flag;
+					};
+				}
+				
+				
+				//全选/全不选
+				checkAll.onclick = function(){
+					for(var i = 0; i<cheboxs.length; i++){
+							cheboxs[i].checked = checkAll.checked;
+						}
+					
+				};
+				
+				var all = document.getElementById("all");
+				var unAll = document.getElementById("unAll");
+				var reverse = document.getElementById("reverse");
+				// 全选
+				all.onclick = function(){
+					for(var i = 0; i<cheboxs.length; i++){
+						cheboxs[i].checked = true;
+					}
+					checkAll.checked = true;
+				};
+				// 全不选
+				unAll.onclick = function(){
+					for(var i = 0; i<cheboxs.length; i++){
+						cheboxs[i].checked = false;
+					}
+					checkAll.checked = false;
+				};
+				// 反选
+				reverse.onclick = function(){
+					for(var i = 0; i<cheboxs.length; i++){
+						cheboxs[i].checked = !cheboxs[i].checked;
+					}
+					var flag = true;
+					for(var j = 0; j<cheboxs.length; j++){
+						if(!cheboxs[j].checked) {
+							flag = false;
+							break;
+						}
+					};
+					checkAll.checked = flag;
+					
+				};
+				//提交
+				document.getElementById("sub").onclick = function(){
+					for(var i = 0; i<cheboxs.length; i++){
+						if(cheboxs[i].checked) alert(cheboxs[i].value);
+					}
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<form>
+			请选择你喜欢的运动： 
+			<input type="checkbox" name="checkAll" id="checkAll" value="checkAll" />全选/全不选
+			<br/>
+			<input type="checkbox" name="motion" id="basketball" value="basketball" />篮球
+			<input type="checkbox" name="motion" id="volleyball" value="volleyball" />排球
+			<input type="checkbox" name="motion" id="Pingpang" value="Pingpang" />乒乓球
+			<input type="checkbox" name="motion" id="football" value="football" />足球
+			<input type="checkbox" name="motion" id="badminton" value="badminton" />羽毛球
+			
+			<br/>
+			<input type="button" name="all" id="all" value="全    选" />
+			<input type="button" name="unAll" id="unAll" value="全不选" />
+			<input type="button" name="reverse" id="reverse" value="反    选" />
+			<input type="button" name="sub" id="sub" value="提交" />
+		</form>
+	</body>
+</html>

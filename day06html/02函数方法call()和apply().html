@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 2、函数方法
+				(1)call() apply() 调函数时可以传一个参数对象，这个对象将会是函数执行时的 this，因此达到修改this的目的
+					如果直接 fun() 调用则this为window
+				(2)call()方法可以在obj后依次传入对象
+				(3)apply()方法需要以数组形式封装参数
+				(4)this的四种情况
+					-以函数形式调用this永远都是window
+					-以方法形式调用this是调用方法的对象
+					-以构造函数形式调用this是新创建的对象
+					-以call() apply()调用this是参数指定的那个对象
+			*/
+			function fun(a,b){
+				console.log("a = "+a);
+				console.log("b = "+b);
+			}
+			var obj = {
+				name: "zhangsan"
+			};
+			fun.call(obj, 2, 3);
+			fun.apply(obj, [5,3]);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

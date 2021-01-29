@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width: 200px;
+				height: 150px;
+				border: 1px solid #333333;
+			}
+			#box2{
+				margin-top: 30px;
+				width: 200px;
+				height: 50px;
+				border: 1px solid #333333;
+			}
+		</style>
+		<script type="text/javascript">
+			
+			/*
+			#### 1、鼠标事件
+				(1)onmousemove 鼠标移动事件，当鼠标移动时触发
+					传入event 获取鼠标当前坐标 event.clientX  event.clientY
+					ie8- event不能被传入，而是在window的属性中，使用window.event.clientX来调用 通过自定义函数判断解决
+					目前都支持 event.clientX 火狐已经兼容
+					if(event){
+						var x = event.clientX;
+						var y = event.clientY;
+						box2.innerText = "x = "+x+"   y = "+y;
+					}else{
+						var x = window.event.clientX;
+						var y = window.event.clientY;
+						box2.innerText = "x = "+x+"   y = "+y;
+					}
+				(2)
+				(3)
+				(4)
+				(5)
+			*/
+				
+			window.onload = function(){
+				var box2 = document.getElementById("box2");
+				var box1 = document.getElementById("box1");
+				
+				box1.onmousemove = function(event){
+					// event = event || window.event; //兼容性处理
+					if(event){
+						var x = event.clientX;
+						var y = event.clientY;
+						box2.innerText = "x = "+x+"   y = "+y;
+					}else{
+						var x = window.event.clientX;
+						var y = window.event.clientY;
+						box2.innerText = "x = "+x+"   y = "+y;
+					}
+				}
+				
+				
+				
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="box1"></div>
+		<div id="box2"></div>
+		
+	</body>
+</html>

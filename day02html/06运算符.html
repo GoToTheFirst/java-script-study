@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>运算符</title>
+		<script type="text/javascript">
+			
+			/*
+			5、运算符
+				（1）typeof 也是一个运算符，返回数据类型，以字符串的形式保存
+				（2）算术运算符 +-/*
+					非Number数据先转换为Number再进行运算 eg：true + false = 1(true转换为1，false转换为0)
+					任何数字跟NaN做运算返回都是NaN
+					字符串加法为拼串操作 "123" + 1; null + "123"; undefined + "123";
+			*/
+		   
+		   var a = null + "123";
+		   var b = undefined + "";       //仍然为字符串类型
+		   console.log(a);
+		   console.log(b);
+		   console.log(typeof b);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

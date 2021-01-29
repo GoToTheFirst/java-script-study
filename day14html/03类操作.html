@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.box1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			.box2{
+				width: 200px;
+				/* height: 200px; */
+				background-color: yellow;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			#### 3、类操作
+				(1)通过修改类名修改简介修改属性
+					浏览器只需要渲染一次页面，使表现和行为进一步分离
+					div1.className += " box2";
+				(2)判断是否已经含有cn类
+					有则返回 true 无则返回 false
+					function hasClass(obj, cn){
+						// \b 正则表达式 表示单词边界
+						var reg = new RegExp("\\b"+cn+"\\b");
+						return reg.test(obj.className);
+					}
+				(3)给元素添加类addClass
+					添加不重复类 重复则不添加
+					function addClass(obj, cn){
+						if(!hasClass(obj, cn)){  // 如果没有cn类则添加
+							obj.className += " "+cn;
+						}
+					}
+				(4)删除类 delClass
+					添加不重复类 重复则不添加
+					function delClass(obj, cn){
+						var reg = new RegExp("\\b"+cn+"\\b");
+						// 将cn 替换为空串即可删除
+						obj.className = obj.className.replace(reg, "");
+					}
+				(5)切换类 toggleClass
+					有则删除无责添加
+					function toggleClass(obj, cn){
+						var reg = new RegExp("\\b"+cn+"\\b");
+						if(hasClass(obj, cn)){ // 有则删除
+							delClass(obj, cn);
+						}else{                 //无则添加
+							addClass(obj, cn);
+						}
+					}
+			*/
+			window.onload = function(){
+				var btn = document.getElementById("btn");
+				var div1 = document.getElementById("div1");
+				div1.className += " box2";
+				btn.onclick = function(){
+					// div1.className = "box2";
+					// 同时引入两个class 中间需要用空格隔开
+					// addClass(div1, "box2");
+					// delClass(div1, "box2");
+					toggleClass(div1, "box2");
+				}
+				
+				
+				// 切换类 toggleClass
+				// 有则删除无责添加
+				function toggleClass(obj, cn){
+					var reg = new RegExp("\\b"+cn+"\\b");
+					if(hasClass(obj, cn)){ // 有则删除
+						delClass(obj, cn);
+					}else{                 //无则添加
+						addClass(obj, cn);
+					}
+				}
+				
+				// 删除类 delClass
+				// 添加不重复类 重复则不添加
+				function delClass(obj, cn){
+					var reg = new RegExp("\\b"+cn+"\\b");
+					// 将cn 替换为空串即可删除
+					obj.className = obj.className.replace(reg, "");
+				}
+				
+				// 给元素添加类addClass
+				// 添加不重复类 重复则不添加
+				function addClass(obj, cn){
+					if(!hasClass(obj, cn)){  // 如果没有cn类则添加
+						obj.className += " "+cn;
+					}
+				}
+				
+				// 判断是否已经含有cn类
+				// 有则返回 true 无则返回 false
+				function hasClass(obj, cn){
+					// \b 正则表达式 表示单词边界
+					var reg = new RegExp("\\b"+cn+"\\b");
+					return reg.test(obj.className);
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<button type="button" id="btn">使用类修改样式</button>
+		<div id="div1" class="box1">
+			
+		</div>
+	</body>
+</html>

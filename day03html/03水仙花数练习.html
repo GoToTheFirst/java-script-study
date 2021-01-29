@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			// 1000以内的水仙花数
+			console.log("计算1000以内的水仙花数\n")
+			var count = 0;
+			for(var i = 1; i < 1000; i++){
+				var bai = parseInt(i/100);
+				var shi = parseInt((i-bai*100)/10);
+				var ge = i%10;
+				
+				// Math.pow(x, y);  返回 x^y
+				if(Math.pow(bai, 3) + Math.pow(shi, 3) + Math.pow(ge, 3) == i ){
+					console.log(i);
+					count++;
+				}
+			}
+			console.log("1000以内的水仙花数：" + count);
+			
+			
+			// 100以内的质数
+			console.log("计算100以内的质数\n")
+			count = 0;
+			for(i = 0; i <100; i++){
+				for(var j = i-1; j > 1; j--){  //除了1和自身外其他的数字能否整除
+					if(i%j == 0){            //有整除的则不是,continue跳过此次循环
+						break;
+					}
+				}
+				//循环执行完毕没有跳过循环,此时j=1 则为质数
+				if(j == 1){
+					console.log(i);
+					count++;
+				}
+				
+			}
+			console.log("100以内的质数：" + count);
+			
+			
+			// 100以内的质数，标志方法
+			console.log("计算100以内的质数\n")
+			count = 0;
+			var flag = true;
+			for(i = 2; i < 100; i++){           //从2开始，0 1既不是质数也不是合数
+				flag = true;
+				for(var j = 2; j <= Math.sqrt(i); j++){  //除了1和自身外其他的数字能否整除
+					if(i%j == 0){            //有整除的则不是,continue跳过此次循环
+						flag = false;
+						break;
+					}
+				}
+				//循环执行完毕没有跳过循环,此时j=1 则为质数
+				if(flag){
+					console.log(i);
+					count++;
+				}
+				
+			}
+			console.log("100以内的质数：" + count);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

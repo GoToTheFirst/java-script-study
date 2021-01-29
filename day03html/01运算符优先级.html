@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			1、运算符优先级
+				（1）&& 比 || 高。 
+					eg：1 || 2 && 3; 
+					如果 || 优先级高，先计算1 || 2 得true，再计算 true && 3，第一个为true直接输出第二个
+					如果 && 优先级高，先计算2 && 3 得true，再计算 1 || true，第一个为true直接输出第一个
+			*/
+		   /*
+		   2、代码块
+		   	（1）只具有分组作用不能进行隔离。
+				eg：{var a = 10;}
+					console.log(a); 
+					正常输出a的值 10
+		   */
+		   var res = 1 || 2 && 3;
+		   console.log("1 || 2 && 3 输出：" + res);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

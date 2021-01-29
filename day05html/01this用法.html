@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			1、this用法  根据函数的调用方式不同this指向不同的对象
+				(1)以函数形式调用时，this永远指向window
+					var name = "zhubajie"
+						function fun(){
+							console.log(this.name);
+						}
+						var obj = {
+							name: "sunwukong",
+							sayName: fun
+						};        
+						fun();         //输出zhubajie  以函数形式调用this永远指向window, window.name = zhubajie
+				(2)以方法形式调用时，this就是调用函数的那个对象
+					obj.sayName(); //输出sunwukong  以方法形式调用this指向obj, obj.name = sunwukong
+				(3)一构造方法调用时，this就是新创建的那个对象（详情见构造函数）
+			*/
+		   var name = "zhubajie"
+			function fun(){
+				console.log(this.name);
+			}
+			var obj = {
+				name: "sunwukong",
+				sayName: fun
+			};      //此处为声明语句，最后需要用;
+			fun();         //输出zhubajie  以函数形式调用this永远指向window, window.name = zhubajie
+			obj.sayName(); //输出sunwukong  以方法形式调用this指向obj, obj.name = sunwukong
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

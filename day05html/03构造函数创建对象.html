@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			3、构造函数创建对象（创建类）
+				(1)可以区分对象类型
+					//创建人的构造函数(Dog类，new对象 叫做创建实例)
+					function Person(name, age, gender){
+						this.name = name;         //this会将值赋给新创建的对象
+						this.age = age;
+						this.gender = gender;
+						this.sayName = function(){
+							console.log(this.name);
+						}
+					}
+					var per1 = new Person("zhangsan", 15, "men");
+					per1.sayName();     //输出 zhangsan
+					console.log(per1);  //输出 Person {name: "zhangsan", age: 15, gender: "men", sayName: ƒ}
+					
+					//创建狗的构造函数(Dog类，new对象 叫做创建实例)
+					function Dog(name){
+						this.name = name;         //this会将值赋给新创建的对象
+						this.sayHello = function(){
+							console.log("我是一只狗汪汪汪···");
+						}
+					}
+					var dog1 = new Dog("wangcai");
+					dog1.sayHello();     //输出 我是一只狗汪汪汪···
+					console.log(dog1);  //输出 Dog {name: "wangcai", sayHello: ƒ}
+				(2)instanceof 可以判断是否是一个类的实例，是则返回true
+					语法 (对象 instanceof 构造函数)
+					console.log(per1 instanceof Person);
+					console.log(dog1 instanceof Dog);
+			*/
+		   
+		   //创建人的构造函数
+			function Person(name, age, gender){
+				this.name = name;         //this会将值赋给新创建的对象
+				this.age = age;
+				this.gender = gender;
+				this.sayName = function(){
+					console.log(this.name);
+				}
+			}
+			var per1 = new Person("zhangsan", 15, "men");  //创建实例
+			per1.sayName();     //输出 zhangsan
+			console.log(per1);  //输出 Person {name: "zhangsan", age: 15, gender: "men", sayName: ƒ}
+			
+			//创建狗的构造函数
+			function Dog(name){
+				this.name = name;         //this会将值赋给新创建的对象
+				this.sayHello = function(){
+					console.log("我是一只狗汪汪汪···");
+				}
+			}
+			var dog1 = new Dog("wangcai");  //创建实例
+			dog1.sayHello();     //输出 我是一只狗汪汪汪···
+			console.log(dog1);  //输出 Dog {name: "wangcai", sayHello: ƒ}
+			
+			//instanceof 可以判断是否是一个类的实例，是则返回true
+			console.log(per1 instanceof Person);
+			console.log(dog1 instanceof Dog);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1 {
+				width: 50px;
+				height: 50px;
+				border: 1px solid #333333;
+				background-color: red;
+				position: relative;
+			}
+			#box2 {
+				width: 50px;
+				height: 50px;
+				border: 1px solid #333333;
+				background-color: yellow;
+				position: relative;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			#### 00、拖拽事件
+				(1)currentStyle["left"] 表示当前div的距离父元素左侧距离
+					offsetLeft.left：如果position是absolute，则是相对于body
+					currentStyle["left"] 等同于 offsetLeft.left
+				(2) obj.scrollWidth：元素实际宽度，不管是否已经用横向滚动条浏览过
+					obj.scrollLeft：元素横向滚动条滚过的宽度。
+					未滚过宽度 scrollWidth - scrollLeft - event.clientWidth
+			*/
+
+			window.onload = function() {
+				var box1 = document.getElementById("box1");
+				var img1 = document.getElementById("img1");
+				var box2 = document.getElementById("box2");
+				var x, y;
+
+				function myStyle(obj, name) { //第二个参数为字符串
+					if (obj.currentStyle) {
+						if (obj.currentStyle[name] == "auto") return 0;
+						return obj.currentStyle[name];
+					} else {
+						if (getComputedStyle(obj, null)[name] == "auto") return 0;
+						return getComputedStyle(obj, null)[name];
+					}
+				}
+
+
+				function drag(obj){
+					//点击事件
+					obj.onmousedown = function() {
+						console.log("按下");
+						x = parseInt(myStyle(obj, "left")) - event.clientX;
+						y = parseInt(myStyle(obj, "top")) - event.clientY;
+					
+						console.log("x = " + x + "   y = " + y);
+					
+						document.onmousemove = function() {
+							var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+							var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+							console.log("滚动高度：" + document.documentElement.scrollLeft);
+							var left = event.clientX + scrollLeft + x;
+							var top = event.clientY + scrollTop + y;
+					
+							obj.style.left = left + "px";
+							obj.style.top = top + "px";
+					
+							// 浏览器自带默认能拖动文字
+							// 在onmousemove方法里返回false可取消
+							// 但是ie8-不支持
+							return false;
+						}
+					
+						document.onmouseup = function() {
+							console.log("松开");
+							document.onmousemove = null;
+							document.onmouseup = null;
+					
+						}
+				}
+
+
+				}
+			
+			
+				drag(box1);
+				drag(box2);
+				drag(img1);
+			}
+		</script>
+	</head>
+	<body>
+		这是一个box
+		<div id="box1"></div>
+		<div id="box2"></div>
+		<img src="../README_files/1.png" id="img1" style="position: relative;">
+	</body>
+</html>

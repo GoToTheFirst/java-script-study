@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#addDiv{
+				width: 300px;
+				height: 250px;
+				border:2px solid #333333;
+				padding: 10px;
+				margin-top: 30px;
+			}
+			.msg{
+				width: 300px;
+				float: left;
+				margin: 10px;
+			}
+			.msg label{
+				float: left;
+			}
+			.msg input{
+				float: left;
+			}
+			
+		</style>
+		<style type="text/css">
+			table.hovertable {
+				font-family: verdana,arial,sans-serif;
+				font-size:11px;
+				color:#333333;
+				border-width: 1px;
+				border-color: #999999;
+				border-collapse: collapse;
+			}
+			table.hovertable th {
+				background-color:#c3dde0;
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: #a9c6c9;
+			}
+			table.hovertable tr {
+				background-color:#d4e3e5;
+			}
+			table.hovertable td {
+				border-width: 1px;
+				padding: 8px;
+				border-style: solid;
+				border-color: #a9c6c9;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			#### 00、员工添加删除练习
+				(1)多个元素添加事件时用this  使用this 表示当前点击的超链接
+				用del[i]返回undefined 因为加载完后执行for循环执行完毕后 当点击超链接时i=3
+					for(var i=0; i<del.length; i++){
+						del[i].onclick = function(){
+							// 使用this 表示当前点击的超链接，用del[i]返回undefined
+							var name = this.parentNode.parentNode.firstElementChild.innerHTML;
+							var flag = confirm("确认删除"+ name +"吗？"); //点击确认返回true 取消返回false
+							if(flag) this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+						};
+					}
+			*/
+			window.onload = function(){
+				var del = document.getElementsByTagName("a");
+				
+				for(var i=0; i<del.length; i++){
+					del[i].onclick = function(){
+						// 使用this 表示当前点击的超链接，用del[i]返回undefined
+						var name = this.parentNode.parentNode.firstElementChild.innerHTML;
+						var flag = confirm("确认删除"+ name +"吗？"); //点击确认返回true 取消返回false
+						if(flag) this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+					};
+				}
+				function delSelf(){
+					var name = this.parentNode.parentNode.firstElementChild.innerHTML;
+					var flag = confirm("确认删除"+ name +"吗？"); //点击确认返回true 取消返回false
+					if(flag) this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+					
+				}
+				
+				var submit = document.getElementById("submit");
+				var ele = document.querySelectorAll("#addDiv input");
+				var tbody = document.getElementsByTagName("tbody")[0];
+				console.log(tbody);
+				submit.onclick = function(){
+					var flag = confirm("确定添加  "+ele[0].value+"  吗？");
+					var tr = document.createElement("tr");
+					var str = "<td>" + ele[0].value + "</td><td>" +ele[1].value+"</td><td>"+ele[2].value+"</td>"+"<td><a href='javaScript:;'>deleate</a></td>";
+					tr.innerHTML = str;
+					tbody.appendChild(tr);
+					// addDel();
+					//单个添加删除功能
+					tr.getElementsByTagName("a")[0].onclick = delSelf ;
+				};
+			};
+			
+		</script>
+	</head>
+	<body>
+		<div id="formDiv">
+			<table class="hovertable" id="hovertable">
+				<tr>
+					<th>名字</th>
+					<th>邮箱</th>
+					<th>工资</th>
+					<th>删除</th>
+				</tr>
+				<tr>
+					<td>张三</td>
+					<td>234234@sdf.cn</td>
+					<td>3000</td>
+					<td><a href="javaScript:;">deleate</a></td>
+				</tr>
+				<tr>
+					<td>李四</td>
+					<td>234234@sdf.cn</td>
+					<td>3000</td>
+					<td><a href="javaScript:;">deleate</a></td>
+				</tr>
+			</table>
+		</div>
+		<div id="addDiv">
+			<form>
+				<h4>添加新员工</h3>
+				<div class="msg">
+					<label>姓名：</label>
+					<input type="text"id="UName" placeholder="请输入员工姓名">
+				</div>
+				<div class="msg">
+					<label>邮箱：</label>
+					<input type="text"id="UEmail" placeholder="请输入员工邮箱">
+				</div>
+				<div class="msg">
+					<label>工资：</label>
+					<input type="text"id="USalery" placeholder="请输入员工工资">
+				</div>
+				<div class="msg" >
+					<input style="float: left; margin-left: 110px;" type="button" id="submit" value="提交" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

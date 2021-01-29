@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			#imgList {
+				list-style: none;
+				width: 500px;
+				position: absolute;
+				left: 0px;
+			}
+
+			#imgList li {
+
+				width: 510px;
+				height: 313px;
+				float: left;
+				overflow: hidden;
+			}
+
+			#imgList li img {
+				clip-path: polygon(0px 0px 313px 500px);
+				margin: 0 5px;
+				
+			}
+
+			#box {
+				width: 500px;
+				height: 313px;
+				padding: 5px;
+				margin: 0 auto;
+				background-color: yellow;
+				overflow: hidden;
+				position: relative;
+			}
+
+			/* 设置导航块 */
+			#navDiv {
+				position: absolute;
+				bottom: 20px;
+			}
+
+			#navDiv a {
+				float: left;
+				width: 15px;
+				height: 15px;
+				margin: 0 8px;
+				background-color: red;
+				opacity: 0.5;
+			}
+
+			#navDiv a:hover {
+				background-color: black;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				var box = document.getElementById("box");
+				var navDiv = document.getElementById("navDiv");
+				var imgList = document.getElementById("imgList");
+				var allA = document.getElementsByTagName("a");
+				var imgArr = document.getElementsByTagName("img");
+				imgList.style.width = 520 * imgArr.length + "px";
+				var imgListLeft = imgList.offsetLeft;
+				var index = 0;
+				var autoChangeTimer;
+
+				// 设置导航居中
+				var boxWidth = box.offsetWidth;
+				var navDivLeft = navDiv.offsetWidth;
+				navDiv.style.left = (boxWidth - navDivLeft) / 2 + "px";
+
+				// 设置选中为黑色
+				var aAll = document.getElementsByTagName("a");
+				var index = 0;
+				aAll[index].style.backgroundColor = "black";
+
+
+				// 设置点击超链接改变图片
+				for (var i = 0; i < allA.length; i++) {
+					// 先执行循环再执行onclick函数，在循环时设置标志
+					allA[i].num = i;
+					allA[i].onclick = function() {
+						clearInterval(autoChangeTimer);
+						// console.log(this.num);
+						// imgList.style.left = imgListLeft - 515 * this.num + "px";
+						index = this.num;
+						move(imgList, -510 * this.num, "left", 100, function(){
+							setA();
+							autoChange();
+						});
+						
+					}
+				}
+				
+				autoChange();
+				
+				// 自动切换函数
+				function autoChange(){
+					
+					autoChangeTimer = setInterval(function(){
+						move(imgList, -510*index, "left", 100, function(){
+							setA();
+							console.log(index);
+							index++;
+							// index = index%imgArr.length;
+							
+						});
+					}, 2000);
+				}
+				
+				// 更新a的样式函数
+				function setA(){
+					// 判断最后一个图片显示为第一个图片
+					if(index>=imgArr.length-1){
+						index = 0;
+						imgList.style.left = 0;
+					}
+					console.log("测试："+index);
+					// 设置超链接样式
+					for (var j = 0; j < allA.length; j++) {
+						// 内联样式设置为空串，外联样式生效
+						allA[j].style.backgroundColor = "";
+					}
+					allA[index].style.backgroundColor = "black";
+				}
+				
+				
+				// 移动函数
+				function move(obj, target, attr, speed, callBack) {
+					// 添加定时器钱先删除
+					clearInterval(obj.timer);
+					// 判断移动方向
+					if (parseInt(getStyle(obj, attr)) >= target) speed = -speed;
+					// 设置定时器
+					obj.timer = setInterval(function() {
+						var newValue = parseInt(getStyle(obj, attr)) + speed;
+						obj.style[attr] = newValue + "px";
+						// 判断是否到达终点
+						if (speed > 0 && newValue > target || speed < 0 && newValue < target) {
+							obj.style[attr] = target + "px";
+							clearInterval(obj.timer);
+							callBack && callBack();
+						}
+					}, 50);
+				}
+				
+				function getStyle(obj, name) {
+					if (obj.currentStyle) return obj.currentStyle[name];
+					else return getComputedStyle(obj, null)[name];
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="imgList">
+				<li><img src="../day13html/img/1.jpg"></li>
+				<li><img src="../day13html/img/4.jpg"></li>
+				<li><img src="../day13html/img/3.jpg"></li>
+				<li><img src="../day13html/img/2.jpg"></li>
+				<li><img src="../day13html/img/1.jpg"></li>
+			</ul>
+			<div id="navDiv">
+				<a href="javaScript:;"></a>
+				<a href="javaScript:;"></a>
+				<a href="javaScript:;"></a>
+				<a href="javaScript:;"></a>
+			</div>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/JSON-js/json2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*
+			#### 6、JSON
+				(1)JSON是一种特别的对象可以被任何语言识别
+					JSON对象和js对象一样，但JSON对象属性名必须加引号
+				(2)JSON分类
+					对象 {} var obj = '{"name": "张三", "age":18, "gender": "man"}';
+					数组 [] var arr = '[1,2,3,"hello",true]';
+					
+				(3)JSON允许的值
+					字符串
+					数字
+					布尔值
+					null
+					对象（普通对象） var arr2 = '[{"name": "张三", "gender": "man"}, {"name": "张三", "gender": "man"}]'
+					数组
+				(4)js中提供一个工具类 JSON 可讲JSON转化为js对象，js对象转化为JSON对象
+					· JSON对象转js对象 JSON.parse(obj)
+						var jsO = JSON.parse(obj);  // JSON对象转js对象
+						var jsA = JSON.parse(arr);  // JSON对象转js数组
+					· js对象转JSON对象 
+						var jso3 = JSON.stringify(obj3);
+				(5)ie7-不支持JSON可通过引入外部文件来解决
+					<script src="../js/JSON-js/json2.js" type="text/javascript" charset="utf-8"></script>
+			*/
+		   // 创建JSON对象
+			var obj = '{"name": "张三", "age":18, "gender": "man"}';
+			var arr = '[1,2,3,"hello",true]';
+			// JSON中保存对象
+			var arr2 = '[{"name": "张三", "age":18, "gender": "man"}, {"name": "张三", "age":18, "gender": "man"}]'
+			
+			console.log(obj.name);  // 输出undefined 不能识别为js对象 需要先转化
+			
+			// JSON转化为js对象
+			var jsO = JSON.parse(obj);  // JSON对象转js对象
+			var jsA = JSON.parse(arr);  // JSON对象转js数组
+			console.log(jsO.name);
+			console.log(jsA[3]);
+			
+			// 创建js对象
+			var obj3 = {name: "李四",age:18, gender: "men"};
+			console.log(obj3.name);
+			
+			// js对象转JSON 
+			var jso3 = JSON.stringify(obj3);
+			console.log(jso3);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

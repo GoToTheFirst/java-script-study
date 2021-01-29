@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			7、关系运算符 >= < ==
+				（1）可进行数字比较
+					非数字比较则转化为数字比较 eg："" < 1 返回true （""转化为0）
+					任何数字与NaN比较都返回false eg：123 < "hello" 返回false （"hello"转化为NaN，undefined也转化为NaN）
+				（2）若符号两侧都是字符串，则不会转化为字符串再比较，而是比较字符串的Unicode编码
+					逐位比较，若相等这比较下一位 eg："11" < "5" 返回true
+			*/
+		   var result = "a" <= 123;
+		   console.log(result);    //输出false
+		   
+		   result = "a" >= 123;
+		   console.log(result);    //输出false
+		   
+		   result = "" <= 123;     //""转化为0
+		   console.log(result);    //输出true
+		   
+		   console.log(true > false);  //输出false
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

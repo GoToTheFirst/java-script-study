@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>break lable</title>
+		<script type="text/javascript">
+			/*
+			4、带标记的循环  终止整个循环可用 break lable;   终止本次循环可用 continue lable; 
+				（1）格式
+					lable:
+					for / switch{
+						break lable;
+						continue lable;
+					}
+			*/
+			outer:
+			for(var i = 0; i < 5; i++){
+				console.log("outer: " + i);
+				for(var j = 0; j < 5; j++){
+					console.log("inner: " + j);
+					if(i == 2) break outer;       //终止标记outer循环
+					if(j == 1) break;             //终止离自己最近的outer
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

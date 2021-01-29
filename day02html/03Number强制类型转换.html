@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Number类型转换</title>
+		<script type="text/javascript">
+			/*
+			2、转Number
+				方法一：调用Number()函数
+					（1）字符串纯数字直接转数字，非数字返回NaN
+					（2）字符串空串转为0
+					（2）Boolean类型 true转1 false转0 
+					（4）null类型转 0
+					（5）undefined类型转数字结果为NaN
+				方法二：parseInt()函数  从第一个字符开始解析，直到碰到非数字。
+					（1）null undefined 都被解析为NaN，其原理为先转String再解析
+					（2）parseFloat与parseFloat类似
+			*/
+		   var a = "123";
+		   a = Number(a);
+		   console.log(a);
+		   console.log(typeof a);
+		   
+		   a = "abc";
+		   a = Number(a);
+		   console.log(a);
+		   console.log(typeof a);
+		   
+		   a = null;
+		   a = Number(a);
+		   console.log(a);
+		   console.log(typeof a);
+		   
+		   a = undefined;
+		   a = Number(a);
+		   console.log(a);
+		   console.log(typeof a);
+		   
+		   a = undefined;
+		   a = parseInt(a);  //转成NaN
+		   console.log(a);
+		   console.log(typeof a);
+		   
+		   a = "123px";
+		   a = parseInt(a);  //转成123
+		   console.log(a);
+		   console.log(typeof a);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

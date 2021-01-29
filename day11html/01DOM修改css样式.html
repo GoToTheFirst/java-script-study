@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width: 100px;
+				height: 100px;
+				background-color: red; /* 强制最高优先级 */
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			#### 1、DOM修改css样式
+				(1)元素.style.属性 = 属性值；
+					· 修改后时内联样式
+					· 若原样式中有 !important 则定义为最高优先级，内联样式也不可覆盖，不可被修改
+					· 如background-color带有-的属性名更改为驼峰命名法
+					· 通过style读取/设置的都是内联样式
+					· box1.style.width获取的值是带px的字符串，可通过parseInt来解析出来数字部分
+					·
+				(2)获取元素样式值 getComputedStyle currentStyle获取到的对象都是只读的，修改需要style
+					· box1.currentStyle.width  只有ie支持 其他都不支持 不设置时获取auto
+					· getComputedStyle(box1,null).width  （ie9+）都支持 不设置时获取真实的值
+						第一个参数为元素对象，第二个参数一般用不到
+				(3)创建兼容的方法
+					function tyle(obj, name){  //第二个参数为字符串
+						if(obj.currentStyle){
+							return obj.currentStyle[name];
+						}else{
+							return getComputedStyle(obj, null)[name];
+						}
+					}
+			*/
+		   
+		   // 创建兼容的方法
+			function tyle(obj, name){  //第二个参数为字符串
+				if(obj.currentStyle){
+					return obj.currentStyle[name];
+				}else{
+					return getComputedStyle(obj, null)[name];
+				}
+			}
+			window.onload = function(){
+				
+				var box1 = document.getElementById("box1");
+				var btn = document.getElementById("btn");
+				var btnRead = document.getElementById("btnRead");
+				btn.onclick = function(){
+					box1.style.width = "300px";
+					box1.style.height = "300px";
+					box1.style.backgroundColor = "yellow";
+				};
+				btnRead.onclick = function(){
+					console.log(box1.style.width);  //字符串类型，可通过parseInt来解析出来数字部分
+					
+					//读取当前显示样式
+					// console.log(box1.currentStyle.width); //只有ie支持 其他都不支持 不设置时获取auto
+					// console.log(getComputedStyle(box1,null)["width"]); //（ie9+）都支持 不设置时获取真实的值
+					console.log(tyle(box1, "width"));
+				};
+				btnRead.onclick();
+			};
+		</script>
+	</head>
+	<body>
+		<button type="button" id="btn">修改css样式</button>
+		<button type="button" id="btnRead">读取css样式</button>
+		<div id="box1">
+			
+		</div>
+	</body>
+</html>

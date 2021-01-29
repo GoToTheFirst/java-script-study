@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 5、事件绑定
+				(1)对象.事件 = 函数  只能绑定一个函数，先绑定的会被覆盖掉后面绑定的
+					btn.onclick = function(){
+						console.log("这是绑定的第一个函数");
+					}
+					btn.onclick = function(){  //该函数将会覆盖掉第一个函数
+						console.log("这是绑定的第二个函数");
+					}
+				(2)addEventListener(事件, 函数, false) 可同时绑定多个函数 当事件触发时按绑定顺序执行
+					第一个参数为字符串 触发监听器的事件，不带on，第二个参数为函数， 第三个参数表示是否在捕获阶段触发，一般为false
+					不支持ie8-的浏览器 其他可以
+					btn.addEventListener("click", function(){console.log("1")}, false);
+				(3)attachEvent(事件, 函数) ie8-支持，ie11和其他浏览器不支持
+					btn.attachEvent("onclick", function(){console.log("ceshi");});
+				(4)兼容处理 不使用call回调时，this指向不同，ie8-指向btn 其他指向window
+					function bind(obj, eventStr, fun){
+						if(obj.addEventListener){
+							obj,addEventListener(eventStr, function(){
+								fun.call(obj);
+								// 此时this指的是obj
+							}, false);
+						}else{
+							obj.attachEvent("on"+eventStr, function(){
+								fun.call(obj);
+								// 此时this指的是obj
+							});
+						}
+					}
+				(5)事件绑定解除
+					function bind(obj, eventStr, fun){
+						if(obj.removeEventListener) obj.removeEventListener{eventStr, fun);
+						}else{
+							obj.detachEvent("on"+eventStr, fun);
+						}
+					}
+					
+			*/
+
+			document.detachEvent()
+
+			window.onload = function() {
+				var btn = document.getElementById("btn");
+				// btn.onclick = function(){
+				// 	console.log("这是绑定的第一个函数");
+				// }
+				// btn.onclick = function(){  //该函数将会覆盖掉第一个函数
+				// 	console.log("这是绑定的第二个函数");
+				// }
+
+				// addEventListener(事件, 函数, false) 可绑定多个函数
+				// btn.addEventListener("click", function(){console.log("1")}, false);
+				// btn.addEventListener("click", function(){console.log("2")}, false);
+				// btn.addEventListener("click", function(){console.log("3")}, false);
+
+				// ie8-支持，ie11和其他浏览器不支持
+				// btn.attachEvent("onclick", function(){console.log("ceshi");});
+
+				// 解决兼容问题
+				function bind(obj, eventStr, fun) {
+					if (obj.addEventListener) {
+						obj,
+						addEventListener(eventStr, function() {
+							fun.call(obj);
+							// 此时this指的是obj
+						}, false);
+					}
+					else {
+						obj.attachEvent("on" + eventStr, function() {
+							fun.call(obj);
+							// 此时this指的是obj
+						});
+					}
+				}
+
+				//绑定两个函数
+				bind(btn, "click", function() {
+					console.log("11");
+					console.log(this == btn);
+				});
+				bind(btn, "click", function() {
+					console.log("22");
+					console.log(this == btn);
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<button id="btn" type="button">绑定函数</button>
+	</body>
+</html>

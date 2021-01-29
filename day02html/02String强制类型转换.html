@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>强制类型转换</title>
+		<script type="text/javascript">
+			/*
+			其他数据类型转tring Number Boolean （转null和undefined无意义）
+			
+			1、转String
+				方法一：toString()方法  a.toString();
+					（1）toString()方法返回String类型不改变原来数据的值
+					（2）其中null和undefined类型 没有toString()方法
+				方法二：String()函数  String(a);
+					（1）String()函数返回String类型不改变原来数据的值
+					（2）可用于null和undefined类型转换
+			*/
+			
+			var num = 123;
+			console.log(typeof num);
+			var b = false;
+			console.log(typeof b);
+			// 方法一
+			console.log(num.toString());
+			console.log(typeof num.toString());
+			console.log(b.toString());
+			console.log(typeof b.toString());
+			// 方法二
+			console.log(String(num));
+			console.log(typeof String(num));
+			console.log(String(b));
+			console.log(typeof String(b));
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

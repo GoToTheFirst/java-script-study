@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>转Boolean</title>
+		<script type="text/javascript">
+			/*
+			4、转Boolean
+				只有一种方法，Boolean()函数
+				（1）数字转Boolean只有NaN和0转为false
+				（2）字符串转Boolean只有空串转为false
+				（3）null和undefined转为false
+				（4）object也会转换为true
+				（5）
+			*/
+			var a = 123;
+			var b = Infinity;       //false
+			var c = 0;              //false
+			var d = NaN;            //false
+			a = Boolean(a);
+			b = Boolean(b);
+			c = Boolean(c);
+			d = Boolean(d);
+			
+			console.log(a);
+			console.log(b);
+			console.log(c);
+			console.log(d);
+			
+			a = "";                //false
+			b = null;              //false
+			c = undefined;         //false
+			a = Boolean(a);
+			b = Boolean(b);
+			c = Boolean(c);
+			
+			console.log(a);
+			console.log(b);
+			console.log(c);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

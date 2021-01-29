@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				cursor: default;
+			}
+
+			#myMenu {
+				width: 100px;
+				margin: 0 auto;
+				overflow: auto;
+				background-color: #eceeeb;
+				border-radius: 10px;
+			}
+
+			.menuClasp {
+				float: left;
+				width: 100px;
+				height: 25px;
+				overflow: hidden;
+			}
+
+			#myMenu div {
+				float: left;
+				width: 100px;
+				/* height: 25px; */
+				overflow: hidden;
+			}
+
+			.menuClasp a {
+				float: left;
+				width: 80px;
+				margin: 2px 0px;
+				margin-left: 20px;
+				/* 除去超链接样式 */
+				text-decoration: none;
+				background-color: #eceeeb;
+				color: black;
+				border-bottom: 1px #808080 solid;
+				/* display: none; */
+			}
+
+			.menuClasp span {
+				float: left;
+				width: 100px;
+				border-radius: 5px;
+				background-color: #646260;
+			}
+
+			.menuClasp a:hover {
+				background-color: #005c67;
+			}
+
+			.menuClasp span:hover {
+				background-color: #005c65;
+			}
+
+			span {
+				float: left;
+				width: 100px;
+				border-radius: 5px;
+				background-color: #646260;
+			}
+
+			a {
+				float: left;
+				width: 80px;
+				margin: 2px 0px;
+				margin-left: 20px;
+				/* 除去超链接样式 */
+				text-decoration: none;
+				background-color: #eceeeb;
+				color: black;
+				border-bottom: 1px #808080 solid;
+
+			}
+		</style>
+		<script src="../js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				var menuClaspArr = document.getElementsByClassName("menuClasp");
+				var menuSpan = document.getElementsByClassName("menuSpan");
+				console.log(menuClaspArr[0].offsetHeight);
+
+
+				var openDiv = menuSpan[0].parentNode;
+				openDiv.className = "";
+				for (var i = 0; i < menuSpan.length; i++) {
+					menuSpan[i].index = i;
+					menuSpan[i].onclick = function() {
+						var parent = menuSpan[this.index].parentNode;
+						console.log("你点击了：" + this.index);
+						console.log(parent);
+
+						// // 切换前高度
+						// var begin = menuSpan[this.index].parentNode.offsetHeight;
+						// // toggleClass(menuSpan[this.index].parentNode, "menuClasp");
+						// // 切换后高度
+						// var end = menuSpan[this.index].parentNode.offsetHeight;
+						// console.log("begin = " + begin + ",  end = " + end);
+
+						// 打开点击的
+						var target = parent.offsetHeight > 30 ? 25 : 124;
+						move(parent, target, "height", 20, function() {
+							console.log("打开点击的");
+							toggleClass(parent, "menuClasp");
+						});
+
+						for (var j = 0; j < menuSpan.length; j++) {
+							// 不是点击的都关闭
+							if (this.index != menuSpan[j].index) {
+								// 判断打开的执行动画，没有打开的不执行
+								var node = menuSpan[j].parentNode;
+								if (menuSpan[j].parentNode.offsetHeight > 30) {
+									move(menuSpan[j].parentNode, 25, "height", 20, function() {
+										console.log("关闭老的");
+										console.log(menuSpan.length);
+										toggleClass(node, "menuClasp");
+									});
+								}
+							}
+						}
+
+
+
+
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="myMenu">
+			<div class="menuClasp">
+				<span class="menuSpan">在线工具1</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+			<div class="menuClasp">
+				<span class="menuSpan">在线工具2</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+			<div class="menuClasp">
+				<span class="menuSpan">在线工具3</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+			<div class="menuClasp">
+				<span class="menuSpan">在线工具3</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+			<div class="menuClasp">
+				<span class="menuSpan">在线工具3</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+
+		</div>
+	</body>
+</html>

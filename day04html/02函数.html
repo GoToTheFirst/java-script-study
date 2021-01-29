@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			2、function 函数也是个对象 console.log(fun); 可输出函数对象
+				fun 表示函数对象， fun() 表示函数调用
+				(1)构造函数创建对象 
+					var fun = new Function("console.log('你好！')");
+				(2)函数声明创建函数对象
+					function fun2(){
+						console.log("fun2");
+					}
+					fun2();  //调用
+				(3)函数表达式创建函数，将匿名函数赋值给一个变量。与函数声明类似
+					var fun3 = function(){
+					   console.log("函数表达式创建函数，与函数声明类似");
+					};      //这里最好带个; 因为整体是个赋值语句
+					fun3();  //调用
+				(4)传参数时不会检查参数类型，因此有可能会造成程序出错。所以有必要进行参数类型检验
+					function fun4(a, b){
+					   console.log(a+b);
+					}
+					fun4(1,2);
+					fun4("hello", 2);  //输出hello2，进行了拼接字符串
+				(5)传参数时不会检查参数数量
+					fun4(123, 456, 789);   //多余参数不会被使用
+					fun4(123); //输出NaN   //缺少参数会被认为时 undefined
+				(6)return 返回函数结果，return 之后的语句不会被执行
+					函数内不写return返回undefined，return后面不跟内容也会返回 undefined
+					返回值的类型与函数内数据类型相同
+					unction fun5(a, b , c){
+						var res = a + b + c;
+						return res;
+						alert("return之后代码不会被执行");
+					}
+					res = fun5(1,2,3);  //程序段不会隔离代码，程序段内用过的变量在程序段外无需声明直接使用
+					console.log("res = "+ res);
+					console.log(typeof res);  //返回类型为Number
+				(7)参数可以是一个函数，也可以在函数内部进行调用
+					开发中经常使用的：fun(function(){语句...});
+					function fun6(f){  //f传进来一个函数对象
+						var result = f(11, 11, 11);   //调用传进来的函数f
+						console.log(result);          //输出f返回的结果
+					}
+					fun6(fun5);  //调用函数fun6 并传入一个函数fun5对象本身
+					fun6(fun5());  //调用函数fun6 并传入fun5()的返回值
+				(8)立即执行函数
+					//立即执行函数,需要加括号保证是一个整体
+					(function(){
+								   console.log("我是立即执行函数。。。");
+					})();  //立即执行函数直接调用，只执行一次
+					//立即执行函数也可以传参
+					(function(a, b){
+									console.log("我是立即执行函数。。。传入参数a,b");
+									console.log("a = " + a + "b = " + b);
+					})(123, 456);  //立即执行函数直接调用，只执行一次
+				(9)对象中的函数叫方法
+					//创建含方法的对象
+					var obj = {
+								   name: "张三",
+								   age: 20,
+								   sayName: function(){
+									   console.log(obj.name);
+								   },
+								   sayAge: function(){
+										console.log(obj.age);
+								   }
+					}
+					//调用obj对象的sayName()方法
+					obj.sayName();
+					//调用obj对象的sayAge()方法
+					obj.sayAge();
+					
+			*/
+		   // 构造函数创建对象 几乎不使用
+		   var fun = new Function("console.log('你好！')");
+		   console.log(fun);  //输出函数体
+		   fun();  //调用函数 控制台输出 你好！
+		   
+		   // 函数声明创建函数对象
+		   function fun2(){
+			   console.log("fun2");
+		   }
+		   console.log(fun2);   //输出函数体
+		   fun2();
+		   
+		   //函数表达式创建函数，将匿名函数赋值给一个变量。与函数声明类似
+		   var fun3 = function(){
+			   console.log("函数表达式创建函数，与函数声明类似");
+		   };     //这里最好带个; 因为整体是个赋值语句
+		   fun3();
+		   
+		   //函数传参
+		   function fun4(a, b){
+			   console.log(a+b);
+		   }
+		   fun4(1,2);
+		   fun4("hello", 2);  //输出hello2，进行了拼接字符串
+		   fun4(true, false);  //输出1，转换成了Number
+		   
+		   // 传参数时不会检查参数数量
+		   fun4(123, 456, 789);   //多余参数不会被使用
+		   fun4(123); //输出NaN   //缺少参数会被认为时 undefined
+		   
+		   function fun5(a, b , c){
+			   var res = a + b + c;
+			   return res;
+			   alert("return之后代码不会被执行");
+		   }
+		   res = fun5(1,2,3);  //程序段不会隔离代码，程序段内用过的变量在程序段外无需声明直接使用
+		   console.log("res = "+ res);
+		   // console.log(typeof res);
+		   
+		   //参数可以是一个函数，也可以在函数内部进行调用
+		   function fun6(f){  //f传进来一个函数对象
+			   var result = f(11, 11, 11);   //调用传进来的函数f
+			   console.log(result);          //输出f返回的结果
+		   }
+		   fun6(fun5);  //调用函数fun6 并传入一个函数 fun5
+		   
+		   //立即执行函数,需要加括号保证是一个整体
+		   (function(){
+			   console.log("我是立即执行函数。。。");
+		   })();  //立即执行函数直接调用，只执行一次
+		   //立即执行函数也可以传参
+		   (function(a, b){
+				console.log("我是立即执行函数。。。传入参数a,b");
+				console.log("a = " + a + "b = " + b);
+		   })(123, 456);  //立即执行函数直接调用，只执行一次
+		   
+		   //创建含方法的对象
+		   var obj = {
+			   name: "张三",
+			   age: 20,
+			   sayName: function(){
+				   console.log(obj.name);
+			   },
+			   sayAge: function(){
+					console.log(obj.age);
+			   }
+		   }
+		   //调用obj对象的sayName()方法
+		   obj.sayName();
+		   //调用obj对象的sayAge()方法
+		   obj.sayAge();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

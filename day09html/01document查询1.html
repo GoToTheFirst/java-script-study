@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 1、获取对象
+				(1)点击事件 写在标签内部 结构和行为耦合不推荐
+					单击事件 onclick=
+					<button onclick="alert('你点我干啥！')">我是按钮</button>
+					双击事件ondblclick=
+					<button ondblclick="alert('你双击了我')">双击按钮</button>
+					写在js代码中
+					var btn1 = document.getElementById("btn1");
+					btn1.onclick = function(){
+						console.log("你单击了我！");
+					};
+				(2)js外置或者写在头部 加载后执行
+					window.onload=function(){};
+				(3)获取同名对象
+					获取同名对象
+					document.getElementsByName("btnName");
+					获取同类名对象
+					document.getElementsByClassName("btnClass");
+					获取文档中同一标签名对象
+					document.getElementsByTagName("button");
+				(4)获取属性
+					var radioId = document.getElementById("radioId");
+					console.log(radioId.value);
+					console.log(radioId.name);
+					console.log(radioId.id);
+			*/
+			
+			window.onload = function(){
+				console.log("加载完成后执行js！");
+				var button = document.getElementById("btn");
+				button.innerHTML = "加载完后呈现代码";
+				//获取同名对象
+				document.getElementsByName("btnName");
+				//获取同类名对象
+				document.getElementsByClassName("btnClass");
+				//获取文档中同一标签名对象
+				document.getElementsByTagName("button");
+				
+				var aId = document.getElementById("aId");
+				aId.href = ""
+				
+				var radioId = document.getElementById("radioId");
+				console.log(radioId.value);
+				console.log(radioId.name);
+				console.log(radioId.id);
+			};
+		</script>
+	</head>
+	<body>
+		<button id="btn" onclick="alert('你点我干啥！')">我是按钮</button>
+		<button ondblclick="alert('你双击了我')">双击按钮</button>
+		<button id="btn1">js写在外部按钮</button>
+		
+		<button name="btnName" class="btnClass">test</button>
+		
+		<a id="aId" href="www.baidu.com">百度以下</a>
+		
+		<input type="radio" name="radioName" id="radioId" value="first"/>
+		<label for="">单选一</label>
+		
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			// console.log(btn);
+			btn.innerHTML = "this is a button";
+			
+			var btn1 = document.getElementById("btn1");
+			btn1.onclick = function(){
+				console.log("你单击了我！");
+			};
+			btn1.ondblclick = function(){
+				console.log("你双击了我！");
+			};
+			
+		</script>
+	</body>
+</html>

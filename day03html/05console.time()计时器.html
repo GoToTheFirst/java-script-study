@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			5、console.time() 计时器
+				（1）开始 console.time("计时器名字") 结束并输出 console.timeEnd("计时器名字");
+				（2）Math.sqrt(27);  //对num开方
+				（3）Math.pow(9,1/2);  //返回x的y次方
+			*/
+			console.time("test");
+			for(var i = 0; i<10000; i++){
+				// console.log(i);
+			}
+			console.timeEnd("test");
+			
+			console.time("test1");
+			console.log(Math.sqrt(27));  //对num开方
+			console.log(Math.pow(9,1/2));  //对num开方
+			console.timeEnd("test1");
+			
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>

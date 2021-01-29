@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1 {
+				width: 50px;
+				height: 50px;
+				border: 1px solid #333333;
+				background-color: red;
+				position: relative;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function() {
+				var box1 = document.getElementById("box1");
+				var x,y;
+				function myStyle(obj, name) { //第二个参数为字符串
+					if (obj.currentStyle) {
+						if(obj.currentStyle[name] == "auto") return 0;
+						return obj.currentStyle[name];
+					} else {
+						if(getComputedStyle(obj, null)[name]) return 0;
+						return getComputedStyle(obj, null)[name];
+					}
+				}
+				
+				
+				function myFun() {
+					
+					var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+					var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+					console.log("滚动高度：" + document.documentElement.scrollLeft);
+					var left = event.clientX + scrollLeft + x;
+					var top = event.clientY + scrollTop + y;
+					
+					console.log("x = " + left + "   y = " + top);
+					
+					box1.style.left = left + "px";
+					box1.style.top = top + "px";
+					
+				}
+
+				//点击事件
+				box1.onmousedown = function() {
+					console.log("按下");
+					x = parseInt(myStyle(box1, "left")) - event.clientX;
+					y = parseInt(myStyle(box1, "top")) - event.clientY;
+					// document.addEventListener("mousemove", myFun);
+					// 兼容做法
+					if(document.addEventListener){
+						console.log("addEventListener绑定！");
+						document.addEventListener("mousemove", myFun, false);
+					}else{
+						console.log("attachEvent绑定！");
+						document.attachEvent("onmousemove", myFun);
+						
+					}
+					
+					// 解决兼容绑定问题
+					function bind(obj, eventStr, fun){
+						if(obj.addEventListener){
+							obj.addEventListener(eventStr, fun, false);
+						}else{
+							obj.attachEvent("on"+eventStr, fun);
+						}
+					}
+					
+					
+				}
+
+
+				document.onmouseup = function() {
+					console.log("松开");
+					// document.removeEventListener("mousemove", myFun);
+					// 兼容做法
+					if(document.removeEventListener){
+						document.removeEventListener("mousemove", myFun);
+						console.log("解除绑定");
+					}else{
+						document.detachEvent("onmousemove", myFun);
+						// obj.attachEvent("on"+eventStr, );
+					}
+					
+					// 解决兼容解除绑定问题
+					// function removeEL(obj, eventStr, fun){
+					// 	if(obj.addEventListener){
+					// 		obj.removeEventListener(eventStr, fun);
+					// 		console.log("解除绑定！");
+					// 	}else{
+					// 		obj.attachEvent("on"+eventStr, fun);
+					// 	}
+					// }
+					
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box1"></div>
+	</body>
+</html>

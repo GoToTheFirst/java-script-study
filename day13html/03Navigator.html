@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 3、BOM 浏览器对象模型 操作浏览器
+				(1)BOM对象
+					· window 对象 浏览器窗口，是网页的全局对象
+					· Navigator 代表浏览器信息 识别不同浏览器
+					· Location 代表地址栏信息 获取地址栏信息，操作跳转地址
+					· History 浏览器的历史记录通过该对象获取浏览器历史记录，
+						由于隐私原因不能获取具体的历史记录只能操作浏览器向前向后，而且该操作只在当次访问时操作
+					· Screen 代表用户屏幕信息 获取用户显示器信息
+				(2)Navigator Location History Screen 都是window的对象 使用时可以window.navigator 也可以直接navigator
+				(3)使用userAgent 判断浏览器类型 判断ie11时用 "ActiveXObject" in window
+					// 判断浏览器, 使用正则表达式
+					if(/chrome/i.test(navigator.userAgent)){
+						console.log("你是chrome浏览器");
+					}else if(/firefox/i.test(navigator.userAgent)){
+						console.log("你是firefox浏览器");
+					}else if(/msie/i.test(navigator.userAgent)){
+						console.log("你是ie浏览器");
+					}else if("ActiveXObject" in window){
+						console.log("你是ie11浏览器");
+					}
+				(4)History使用
+					console.log(history.length);  // history.length 返回访问网页长度
+					// history.back();     // 跳转到下一个页面 与浏览器前进按钮一样
+					// history.forward();  // 跳转到下一个页面 与浏览器前进按钮一样
+					// history.go();          // 传入一个整数参数n 表示向前（正数）/向后（负数） 跳转n个页面
+				(5)location
+					· alert(location);  // 返回获取到地址栏信息
+					· 修改location后直接跳转到链接，或者修改相对路径 同时会生成历史记录
+						location = "https://www.baidu.com/";  // 绝对路径
+						location = "../index.html"  // 相对路径
+					· hash 设置或返回#开始的url
+					· location = "https://www.baidu.com/";  // 绝对路径
+						location = "../index.html"  // 相对路径
+						location.hash 获取#开始的url
+						location.href 返回地址栏完整地址
+						location.hostname 返回主机名
+						location.port  返回端口号
+						location.protocol  返回协议
+						location.search  返回?后的开始的url（查询部分）
+						alert(location);  // 返回获取到地址栏信息
+						修改location后直接跳转到链接
+						或者修改相对路径 同时会生成历史记录
+						location = "https://www.baidu.com/";  // 绝对路径
+						location = "../index.html"  // 相对路径
+						console.log(location.hash);  //获取#开始的url
+						console.log(location.href);  //返回地址栏完整地址
+						console.log(location.hostname); // 返回主机名
+						console.log(location.port);    //返回端口号
+						console.log(location.protocol);  //返回协议
+						console.log(location.search);  //返回?后的开始的url（查询部分）
+						
+						location.assign("https://www.baidu.com");  //功能与直接修改location一样
+						location.reload();  //刷新页面 与点击刷新按钮一样， 可传入参数true 表示清空缓存
+						location.reload(true);
+						location.replace("../index.html");  //替换当前文档，与assign类似，
+															//但是不保留历史记录，无法返回
+						
+			*/
+			
+			window.onload = function(){
+				// console.log(navigator.userAgent); // 浏览器信息
+				// console.log(window.navigator);
+				// console.log(location); // 浏览器地址栏信息
+				// console.log(history); // 浏览器历史信息
+				// console.log(screen); // 用户屏幕信息
+				
+				// 判断浏览器
+				if(/chrome/i.test(navigator.userAgent)){
+					console.log("你是chrome浏览器");
+				}else if(/firefox/i.test(navigator.userAgent)){
+					console.log("你是firefox浏览器");
+				}else if(/msie/i.test(navigator.userAgent)){
+					console.log("你是ie浏览器");
+				}else if("ActiveXObject" in window){
+					console.log("你是ie11浏览器");
+				}
+				
+				// History使用
+				console.log(history.length);  // history.length 返回访问网页长度
+				// history.back();     // 跳转到下一个页面 与浏览器前进按钮一样
+				// history.forward();  // 跳转到下一个页面 与浏览器前进按钮一样
+				// history.go();          // 传入一个整数参数n 表示向前（正数）/向后（负数） 跳转n个页面
+				
+				// location使用
+				var btn = document.getElementById("btn");
+				btn.onclick = function(){
+					// alert(location);  // 返回获取到地址栏信息
+					// 修改location后直接跳转到链接
+					// 或者修改相对路径 同时会生成历史记录
+					// location = "https://www.baidu.com/";  // 绝对路径
+					// location = "../index.html"  // 相对路径
+					// console.log(location.hash);  //获取#开始的url
+					// console.log(location.href);  //返回地址栏完整地址
+					// console.log(location.hostname); // 返回主机名
+					// console.log(location.port);    //返回端口号
+					// console.log(location.protocol);  //返回协议
+					// console.log(location.search);  //返回?后的开始的url（查询部分）
+					
+					// location.assign("https://www.baidu.com");  //功能与直接修改location一样
+					// location.reload();  //刷新页面 与点击刷新按钮一样， 可传入参数true 表示清空缓存
+					// location.reload(true);
+					location.replace("../index.html");  //替换当前文档，与assign类似，但是不保留历史记录，无法返回
+					
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<a href="../index.html">超链接</a>
+		<button type="button" id="btn">点击</button>
+		
+		<input type="text">
+		
+		
+	</body>
+</html>

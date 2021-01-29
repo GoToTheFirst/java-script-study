@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 6、数组创建和属性(length)
+				(1)数组也是一个对象,为object类型
+					var arr = new Array();
+					arr[0] = "zhangsan";
+					arr[20] = 123;  //可不按照顺序添加，中间未设置的元素为undefined
+					console.log(arr);
+					console.log(arr[10]); //输出undefined
+				(2)创建数组的几种方法 js中数组长度没有限制
+					//方法一
+					var arr = new Array();  
+					arr[0] = "zhangsan";
+					arr[20] = 123;  //可不按照顺序添加，中间未设置的元素为undefined
+					//方法二
+					var arr1 = [1, 2, 3, 4];
+					console.log(arr1);  //输出[1, 2, 3, 4]多余部分舍弃，相当于重新定义
+					arr1 = [1,2,3];
+					console.log(arr1); //输出[1, 2, 3]多余部分舍弃，相当于重新定义
+					//方法三
+					var arr2 = new Array(10);  //表示创建一个长度为10的数组
+					arr2[11] = 19;
+					console.log(arr2);
+					console.log(arr2[11]);  //也可以自动扩展
+				(3)arr[2]  获取数组元素
+				(4)arr.length  获取元素长度，length为数组的一个属性不是方法无需加()
+					length属性也可设置长度 arr.length = 10; 大于赋值元素长度则赋值为undefined 小于则删除超过部分元素
+			*/
+		   
+		   // 方法一
+			var arr = new Array();
+			arr[0] = "zhangsan";
+			arr[20] = 123;  //可不按照顺序添加，中间未设置的元素为undefined
+			console.log(arr);
+			console.log(arr[10]); //输出undefined
+			
+			console.log(arr[2]);  //获取数组元素
+			console.log(arr.length);  //获取元素长度，length为数组的一个属性不是方法无需加()
+			
+			// length属性也可设置长度 arr.length = 10;
+			arr.length = 10;
+			console.log(arr);
+			
+			// 方法二
+			var arr1 = [1, 2, 3, 4];
+			console.log(arr1);  //输出[1, 2, 3, 4]多余部分舍弃，相当于重新定义
+			arr1 = [1,2,3];
+			console.log(arr1); //输出[1, 2, 3]多余部分舍弃，相当于重新定义
+			
+			// 方法三
+			var arr2 = new Array(10);
+			arr2[11] = 19;
+			console.log(arr2);
+			console.log(arr2[11]);  //也可以自动扩展
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			/*
+			#### 3、arguments和this是函数调用时传进来的两个隐含参数
+				(1)arguments时一个类数组对象（不是数组但能通过索引访问元素
+				(2)我们传递的实参都通过argumens保存
+				(3)arguments有一个callee属性指向当前函数
+				function fun(){
+					console.log(arguments.length);
+					console.log(arguments[0]);
+					console.log(arguments.callee); //可以通过callee() 再次调用函数
+					
+				}
+			*/
+			function fun(){
+				console.log(arguments.length);
+				console.log(arguments[0]);
+				console.log(arguments.callee); //可以通过callee() 再次调用函数
+				
+			}
+			fun(1,2);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

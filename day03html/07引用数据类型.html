@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			1、基本数据类型存放在栈内存中，对象数据类型存放在堆内存中，栈内存中存放的是对象内容的地址（对象的引用）。
+				(1)创建对象会在堆内存中开辟一块空间，存放对象属性
+				(2)如果两个变量存放的是一个对象的引用，当一个对象修改对象时，
+					另一个也会收到影响，因为他们引用的是同一个内存地址
+			*/
+			var obj1 = new Object();
+			var obj2 = new Object();
+			obj1.name = "张三";
+			obj2.test = obj1;
+			
+			console.log("obj1.name = " + obj1.name);
+			console.log("obj2.test.name = " + obj2.test.name);
+			
+			//修改obj1的值 则obj2对obj1引用的值也同时会发生变化
+			obj1.name = "李四";
+			console.log("经过修改： obj1.name = 李四后 ")
+			console.log("obj1.name = " + obj1.name);            //返回李四
+			console.log("obj2.test.name = " + obj2.test.name);  //返回李四
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

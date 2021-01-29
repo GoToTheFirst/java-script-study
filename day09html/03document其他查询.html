@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 3、document其他查询
+				(1)获取body 	var body = document.body;
+				(2)获取html var html = document.documentElement;
+				(3)获取页面所有元素 document.all 返回一个类数组
+				(4)通过class获取一组对象 getElementsByClassName
+					注意 ie8及以下不支持 可通过querySelectorAll方法来近似解决
+				(5)获取所有div元素 document.getElementsByTagName("div")
+				(6)根据css选择器查询元素 document.querySelector(".box div") ie8及以上支持
+					只能返回一个元素，若有多个符合条件的则返回第个符合条件的
+					可通过 document.querySelectorAll(".box div") 返回多个元素 类数组
+			*/
+			window.onload = function(){
+				var body = document.body;
+				var html = document.documentElement;
+				// console.log(body);
+				// console.log(html);
+				var all = document.all;
+				// console.log(all);
+				// console.log(all.length);
+				
+				var className = document.getElementsByClassName("test");
+				console.log(className.length);
+				
+				var divs = document.getElementsByTagName("div");
+				console.log(divs.length);
+				
+				var divInbox = document.querySelector(".box div"); //只返回第一个
+				console.log(divInbox.innerHTML);
+				
+				var divInboxAll = document.querySelectorAll(".box div"); //只返回第一个
+				console.log(divInboxAll.length);
+			};
+			
+		</script>
+	</head>
+	<body>
+		<div class="box">sdf
+			<div id="">
+				我是box中的div
+			</div>
+		</div>
+		<div class="box">sdf
+		<div id="">
+			我是box中的div
+		</div>
+		</div>
+		<div class="test">fda
+		</div>
+		<div class="test">
+		</div>
+		
+	</body>
+</html>

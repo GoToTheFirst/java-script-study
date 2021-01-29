@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			
+			/*
+			#### 4、定时器
+				(1)setInterval(myFun, 1000); 第一个参数传入函数第二个参数传入间隔秒数
+					· 表示间隔1000毫秒myFun执行一次。
+					· 返回一个Number类型值 表示定时器编号
+					· 可用clearInterval(timer);关闭定时器，
+						传入setInterval的返回值表示定时器编号，可传入任意值，若为无效的则什么都不做
+						
+					function myFun(){
+						h1.innerHTML = num++;
+						if(num == 5){
+							clearInterval(timer); //关闭定时器 ，var timer会提前声明
+						}
+					}
+					var timer = setInterval(myFun, 1000);
+				(2)延时调用 setInterval();
+					var timer = setTimeout(myFun, 3000);
+					clearTimeout(timer); //清空延时调用
+				(3)
+				(2)
+				(2)
+			*/
+				
+			window.onload = function(){
+				// 定时器 setInterval();
+				var h1 = document.getElementById("h1");
+				var num = 0;
+				function myFun(){
+					h1.innerHTML = num++;
+					if(num == 5){
+						clearInterval(timer); //关闭定时器 ，var timer会提前声明
+					}
+				}
+				// var timer = setInterval(myFun, 1000);
+				
+				// 延时调用 setInterval();
+				var timer = setTimeout(myFun, 3000);
+				clearTimeout(timer); //清空延时调用
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h1 id="h1"></h1>
+	</body>
+</html>

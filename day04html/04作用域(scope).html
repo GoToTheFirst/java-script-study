@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			4.1、作用域(scope)-全局作用域
+				(1)在页面打开时创建，在页面关闭时销毁
+				(2)全局作用域中的对象都会作为window的对象保存
+					var a = 131; //作为window属性保存
+					console.log(window.a);  //输出 131
+				(3)在使用过程中可以调用 window.属性名 调用，好处是当变量部存在是返回undefined
+					直接调用时，变量不存在直接报错 b is not defined
+					console.log(window.b);  //输出undefined
+					console.log(b);         //报错b is not defined
+				(4)函数都会作为window的方法保存
+					function fun1(){
+					   console.log("fun1方法。。。");
+					}
+					fun1();         //可用方法名直接调用
+					window.fun1();  //函数是window对象的方法
+			*/
+		   /*
+		   4.2、作用域(scope)-局部作用域（函数作用域）
+		   	(1)在函数内部创建的变量外部不可访问
+		   	(2)每次调用的都是一个作用域，每次作用域不同
+		   	(3)函数内部可访问全局变量，同时存在时优先访问内部的。找不到时访问最近的（函数里套函数情况）
+		   	(4)在函数里(局部作用域)访问全局的用 window.a 来访问
+				function fun2(){
+					var a = 10;
+					console.log("访问局部变量 a：  ：  " + a);
+					console.log("访问全局变量window.a：  " + window.a)
+				}
+				fun2();
+		   	(5)函数内部也会出现声明提前
+				function fun3(){
+					console.log(a);  //输出undefined，因为var在函数内最先执行
+					var a = 11;
+				}
+				fun3();
+			(6)函数内部不使用 var关键字会被认为时全局变量，相当于 window.a
+				var c = 100;
+				function fun4(){
+					console.log("c = " + c);   //输出100，没有用var声明 不会出现声明提前，而是直接向上层访问
+					c = 33;           //相当于window.c = 33; 修改了全局变量
+				}
+				fun4();
+				console.log("c = " + c); //输出33在函数内部修改了全局变量
+			(7)形参相当于在函数内声明了变量
+				var e = 20;
+				function fun5(e){
+					console.log(e);  //输出undefined，形参相当于var e 即声明了e
+				}
+				fun5();
+		   */
+		   //全局作用域
+		   var a = 131; //作为window属性保存
+		   console.log(window.a);  //输出 131
+		   // 在使用过程中可以调用 window.属性名 调用，好处是当变量部存在是返回undefined
+		   // 直接调用时，变量不存在直接报错 b is not defined
+		   console.log(window.b);
+		   // console.log(b);    //报错 b is not defined
+		   
+		   //函数都会作为window对象的方法保存
+		   function fun1(){
+			   console.log("fun1方法。。。");
+		   }
+		   fun1();         //可用方法名直接调用
+		   window.fun1();  //函数是window对象的方法
+		   
+		   // 函数内部定义的变量只能作用于函数内部，外部会被隔离
+			function fun(){
+				var a = 123;
+			}
+			console.log(a);  //报错 a is not defined
+			
+			// 在函数里(局部作用域)访问全局的用 window.a 来访问
+			function fun2(){
+				var a = 10;
+				console.log("访问局部变量 a：  ：  " + a);
+				console.log("访问全局变量window.a：  " + window.a)
+			}
+			fun2();
+			
+			// 函数内部也会出现声明提前
+			function fun3(){
+				console.log(a);  //输出undefined，因为var在函数内最先执行
+				var a = 11;
+			}
+			fun3();
+			
+			// 函数内部不使用 var关键字会被认为时全局变量
+			var c = 100;
+			function fun4(){
+				console.log("c = " + c);   //输出100，没有用var声明 不会出现声明提前，而是直接向上层访问
+				c = 33;           //相当于window.c = 33; 修改了全局变量
+			}
+			fun4();
+			console.log("c = " + c); //输出33在函数内部修改了全局变量
+			
+			// 形参相当于在函数内声明了变量
+			var e = 20;
+			function fun5(e){
+				console.log(e);  //输出undefined，形参相当于var e 即声明了e
+			}
+			fun5();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

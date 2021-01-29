@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			#### 1、正则表达式
+				(1)匹配模式 i表示忽略大小写 g表示执行全局匹配（查找所有匹配而非找到第一个之后停止）m表示执行多行匹配
+					创建正则表达式 构造方法 new RegExp()比较灵活 可传入参数
+					var reg = new RegExp("a", "i");  // 两个参数都为字符串 第一个是正则表达式第二个是匹配模式 
+					console.log(reg.test("Abc"));  //返回true
+					
+					reg = /a/i;  //用字面量创建正则表达式 /正则表达式/匹配模式
+					console.log(reg.test("Abc"));  //返回true
+				(2) | 表示或的关系 []里面表示或的关系 [A-z] 表示任意字母
+					reg = /[ab]/; //[] 里面表示或的关系  [ab] 相当于 /a|b/
+					console.log(reg.test("uiaklh"));
+					reg = /[a-z]/; //[a-z] 表示任意小写字母 [A-Z] 任意大写字母 [A-z] 表示任意字母
+					console.log(reg.test("uiaklh"));
+				(3)[^ ] 表示除了 eg：[^ab] 除了a或b
+				(4)
+				(5)
+			*/
+			//创建正则表达式 构造方法 new RegExp()比较灵活 可传入参数
+			var reg = new RegExp("a", "i");  //忽略大小写检查是否有
+			console.log(reg.test("Abc"));  //返回true
+			
+			reg = /a/i;  //用字面量创建正则表达式 /正则表达式/匹配模式
+			console.log(reg.test("Abc"));  //返回true
+			
+			reg = /a|b/;  // | 表示或 默认区分大小写
+			console.log(reg.test("Auiaklh"));
+			
+			reg = /[ab]/; //[] 里面表示或的关系  [ab] 相当于 /a|b/
+			console.log(reg.test("uiaklh"));
+			
+			reg = /[a-z]/; //[a-z] 表示任意小写字母 [A-Z] 任意大写字母 [A-z] 表示任意字母
+			console.log(reg.test("uiaklh"));
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>
